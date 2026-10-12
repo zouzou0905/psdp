@@ -6,13 +6,14 @@ import httpx
 import pytest
 
 from app.core.config import Settings
+from app.db.test_database import build_postgresql_test_settings
 from app.main import create_app
 from app.modules.identity.domain import ModuleCode, Permission, RoleName
 from app.modules.identity.repository import SqlAlchemyIdentityRepository
 
 pytestmark = pytest.mark.skipif(
     os.environ.get("RUN_POSTGRESQL_INTEGRATION_TESTS") != "1",
-    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to exercise the local PostgreSQL database",
+    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to use the dedicated PostgreSQL test database",
 )
 
 
@@ -76,7 +77,7 @@ async def _fallback_restore(
 
 
 async def test_postgresql_admin_authorization_persists_across_app_restart() -> None:
-    settings = Settings()
+    settings = build_postgresql_test_settings()
     assert settings.database_url.startswith("postgresql+asyncpg://")
     assert settings.demo_operations_password is not None
     assert settings.demo_admin_password is not None

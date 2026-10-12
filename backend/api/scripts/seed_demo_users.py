@@ -168,7 +168,10 @@ async def seed() -> None:
                         for store_id in target_store_ids
                     ]
                 )
-        print("Seeded development accounts: " + ", ".join(DEMO_USERNAMES.values()))
+        print(
+            f"Seeded {settings.app_env} demo accounts: "
+            + ", ".join(DEMO_USERNAMES.values())
+        )
     await engine.dispose()
 
 

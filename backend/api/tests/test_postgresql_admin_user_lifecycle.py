@@ -6,13 +6,13 @@ import httpx
 import pytest
 from sqlalchemy import delete, select
 
-from app.core.config import Settings
 from app.db.models import IdentityUser
+from app.db.test_database import build_postgresql_test_settings
 from app.main import create_app
 
 pytestmark = pytest.mark.skipif(
     os.environ.get("RUN_POSTGRESQL_INTEGRATION_TESTS") != "1",
-    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to exercise the local PostgreSQL database",
+    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to use the dedicated PostgreSQL test database",
 )
 
 
@@ -24,7 +24,7 @@ async def _login(client: httpx.AsyncClient, username: str, password: str) -> htt
 
 
 async def test_postgresql_user_lifecycle_persists_and_invalidates_session() -> None:
-    settings = Settings()
+    settings = build_postgresql_test_settings()
     assert settings.database_url.startswith("postgresql+asyncpg://")
     assert settings.demo_admin_password is not None
     username = f"lifecycle_{uuid4().hex}"

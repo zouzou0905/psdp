@@ -212,6 +212,31 @@ ruff check .
 mypy app scripts
 ```
 
+### Isolated PostgreSQL integration tests
+
+Real PostgreSQL tests must use a dedicated database. They never reuse `DATABASE_URL` and never
+fall back to the development database when `TEST_DATABASE_URL` is missing. Recommended local
+configuration in the untracked `.env`:
+
+```ini
+RUN_POSTGRESQL_INTEGRATION_TESTS=0
+TEST_DATABASE_URL=postgresql+asyncpg://ai_product_ops_app:<url-encoded-password>@127.0.0.1:5432/ai_product_ops_test
+```
+
+Create `ai_product_ops_test` once with a PostgreSQL administrator, then prepare and run it:
+
+```powershell
+$env:RUN_POSTGRESQL_INTEGRATION_TESTS='1'
+python -m scripts.prepare_postgresql_test_database
+pytest -q -rs
+Remove-Item Env:RUN_POSTGRESQL_INTEGRATION_TESTS
+```
+
+The test entry gate requires a PostgreSQL database whose name ends in `_test`. It rejects
+`ai_product_ops_dev`, `postgres`, `template0`, `template1`, staging/production targets, and a target
+identical to `DATABASE_URL` before collection or fixture writes. Error messages contain only safe
+host/database identifiers. Detailed setup and safety rules are in `tests/README.md`.
+
 重新导出共享契约：
 
 ```powershell

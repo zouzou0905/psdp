@@ -8,7 +8,6 @@ import pytest
 from openpyxl import load_workbook
 from sqlalchemy import delete, func, select, update
 
-from app.core.config import Settings
 from app.db.models import (
     GovernanceAuditLog,
     IdentityUser,
@@ -20,11 +19,12 @@ from app.db.models import (
     SelectionTableSnapshot,
     SelectionTableSnapshotRow,
 )
+from app.db.test_database import build_postgresql_test_settings
 from app.main import create_app
 
 pytestmark = pytest.mark.skipif(
     os.environ.get("RUN_POSTGRESQL_INTEGRATION_TESTS") != "1",
-    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to exercise PostgreSQL",
+    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to use the dedicated PostgreSQL test database",
 )
 
 
@@ -39,7 +39,7 @@ async def _login(
 
 
 async def test_postgresql_export_snapshot_and_job_survive_restart() -> None:
-    base_settings = Settings()
+    base_settings = build_postgresql_test_settings()
     password_secret = base_settings.demo_procurement_password
     assert password_secret is not None
     password = password_secret.get_secret_value()
@@ -224,7 +224,7 @@ async def test_postgresql_export_snapshot_and_job_survive_restart() -> None:
 
 
 async def test_postgresql_quotation_export_freezes_version() -> None:
-    settings = Settings()
+    settings = build_postgresql_test_settings()
     password_secret = settings.demo_procurement_password
     assert password_secret is not None
     password = password_secret.get_secret_value()

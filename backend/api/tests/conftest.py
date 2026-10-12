@@ -8,6 +8,11 @@ from fastapi import FastAPI
 from pydantic import SecretStr
 
 from app.core.config import Settings
+from app.db.test_database import (
+    PostgreSQLTestDatabaseSafetyError,
+    activate_postgresql_test_database,
+    postgresql_integration_tests_enabled,
+)
 from app.main import create_app
 from app.modules.admin.domain import (
     AiFeedback,
@@ -52,6 +57,16 @@ RECORD_IDS = {
     "creative_allowed": UUID("c0000000-0000-0000-0000-000000000001"),
     "creative_denied": UUID("c0000000-0000-0000-0000-000000000002"),
 }
+
+
+def pytest_configure() -> None:
+    """Reject an unsafe PostgreSQL target before test collection or fixture writes."""
+
+    if postgresql_integration_tests_enabled():
+        try:
+            activate_postgresql_test_database()
+        except PostgreSQLTestDatabaseSafetyError as exc:
+            raise pytest.UsageError(str(exc)) from None
 
 
 class ConfigurableDatabaseProbe:

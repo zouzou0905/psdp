@@ -5,7 +5,6 @@ import httpx
 import pytest
 from sqlalchemy import delete, func, select, update
 
-from app.core.config import Settings
 from app.db.models import (
     IdentityUser,
     IdentityUserStoreScope,
@@ -13,11 +12,12 @@ from app.db.models import (
     SelectionProfitReviewVersion,
     SelectionRecord,
 )
+from app.db.test_database import build_postgresql_test_settings
 from app.main import create_app
 
 pytestmark = pytest.mark.skipif(
     os.environ.get("RUN_POSTGRESQL_INTEGRATION_TESTS") != "1",
-    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to exercise PostgreSQL",
+    reason="Set RUN_POSTGRESQL_INTEGRATION_TESTS=1 to use the dedicated PostgreSQL test database",
 )
 
 
@@ -29,7 +29,7 @@ async def _login(client: httpx.AsyncClient, username: str, password: str) -> Non
 
 
 async def test_postgresql_selection_versions_persist_across_restart() -> None:
-    settings = Settings()
+    settings = build_postgresql_test_settings()
     assert settings.demo_operations_password is not None
     assert settings.demo_admin_password is not None
     selection_id = uuid4()
