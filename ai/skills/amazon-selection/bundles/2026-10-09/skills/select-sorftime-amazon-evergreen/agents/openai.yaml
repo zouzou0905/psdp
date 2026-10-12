@@ -1,0 +1,12 @@
+interface:
+  display_name: "亚马逊日常微蓝海选品"
+  short_description: "验证全年稳定需求、低评论自然进入和完整利润的日常品机会"
+  default_prompt: "使用 $select-sorftime-amazon-evergreen 深度评估一个站点的日常微蓝海候选，并分别给出类型、市场和开发结论。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sorftime"
+      description: "Sorftime Amazon market data and procurement-space validation"
+      transport: "streamable_http"
+      url: "https://mcp.sorftime.com"

@@ -1,0 +1,12 @@
+interface:
+  display_name: "亚马逊季节窗口品选品"
+  short_description: "验证跨周期季节需求、同阶段蓝海进入证据和本周期到售时机"
+  default_prompt: "使用 $select-sorftime-amazon-seasonal 验证一个季节品候选的需求复现、市场进入性和本周期最晚到仓日。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sorftime"
+      description: "Sorftime Amazon market data and procurement-space validation"
+      transport: "streamable_http"
+      url: "https://mcp.sorftime.com"

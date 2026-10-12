@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "feedback_id": "f0000000-0000-0000-0000-000000000001",
+      "task_id": "tsk_demo",
+      "run_id": "run_demo",
+      "capability_id": "listing-copy",
+      "capability_release_id": "rel_demo",
+      "submitted_by": "10000000-0000-0000-0000-000000000001",
+      "feedback_type": "correction",
+      "summary": "DEMO feedback",
+      "status": "new",
+      "created_at": "2026-10-06T00:00:00Z"
+    }
+  ],
+  "total": 1
+}

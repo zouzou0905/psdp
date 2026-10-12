@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Selection runtime state, v1",
+  "type": "object",
+  "required": ["schema_version", "task_id", "site", "rule_versions", "runtime", "directions", "candidates", "actions"],
+  "properties": {
+    "schema_version": {"const": "selection-task-state-v1"},
+    "task_id": {"type": "string", "minLength": 1},
+    "site": {"enum": ["GB", "DE", "JP", "CA"]},
+    "rule_versions": {"$ref": "#/$defs/rules"},
+    "runtime": {
+      "type": "object",
+      "required": ["execution_authorized", "native_goal_status", "budget_available", "user_stop"],
+      "properties": {
+        "execution_authorized": {"type": "boolean"},
+        "native_goal_status": {"enum": ["not_started", "active", "paused", "blocked", "budget_limited", "complete", "interrupted"]},
+        "budget_available": {"type": ["boolean", "null"]},
+        "user_stop": {"type": "boolean"}
+      }
+    },
+    "directions": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["key", "requested"],
+        "properties": {
+          "key": {"enum": ["evergreen", "seasonal", "holiday", "trending", "consumables", "validated"]},
+          "requested": {"type": "integer", "minimum": 1},
+          "delivery": {"type": "object", "required": ["path", "sha256", "qa_pass", "candidate_ids", "rule_versions"]},
+          "coverage_audit": {"type": "object", "required": ["completed", "alternatives_checked", "source_files", "recovery_condition"]}
+        }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object", "required": ["candidate_id", "opportunity_key", "direction", "site", "primary_type", "quote_priority", "packaging_confidence", "qualification_receipt"],
+        "properties": {
+          "active": {"type": "boolean"},
+          "inquiry_lane": {"enum": ["strict", "controlled_test"]},
+          "qualification_receipt": {
+            "type": "object", "required": ["decision", "scopes", "rule_versions", "source_as_of", "evidence_files"],
+            "properties": {
+              "decision": {"enum": ["quote_ready", "pending", "failed", "review"]},
+              "rule_versions": {"$ref": "#/$defs/rules"},
+              "source_as_of": {"type": "string", "format": "date-time"},
+              "evidence_files": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/file"}},
+              "scopes": {"type": "object", "required": ["type", "market", "target_configuration", "prequote_economics", "packaging", "risk"]},
+              "controlled_evidence_gap_scope": {"enum": ["type", "timing", "market"]},
+              "alternative_evidence_count": {"type": "integer", "minimum": 0},
+              "human_review_required": {"type": "boolean"}
+            }
+          }
+        }
+      }
+    },
+    "actions": {"type": "array", "items": {"type": "object", "required": ["id", "direction", "kind", "status", "dependencies_ready"]}},
+    "blocking_audit": {"type": "object", "required": ["fingerprint", "same_condition", "meaningful_progress", "consecutive_goal_turn_ids"]}
+  },
+  "$defs": {
+    "rules": {"type": "object", "required": ["gates", "market", "profit", "handoff", "execution", "run"], "additionalProperties": {"type": "string"}},
+    "file": {"type": "object", "required": ["path", "sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[a-fA-F0-9]{64}$"}}}
+  }
+}

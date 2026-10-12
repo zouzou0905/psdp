@@ -1,0 +1,3030 @@
+{
+  "schema_version": "selection-candidate-output.v1",
+  "common": {
+    "additionalProperties": false,
+    "description": "Shared candidate contract; null remains distinct from a numeric zero.",
+    "properties": {
+      "candidate_id": {
+        "title": "Candidate Id",
+        "type": "string"
+      },
+      "skill_key": {
+        "title": "Skill Key",
+        "type": "string"
+      },
+      "skill_version": {
+        "title": "Skill Version",
+        "type": "string"
+      },
+      "site": {
+        "enum": [
+          "GB",
+          "DE",
+          "JP",
+          "CA"
+        ],
+        "title": "Site",
+        "type": "string"
+      },
+      "marketplace": {
+        "title": "Marketplace",
+        "type": "string"
+      },
+      "asin": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Asin"
+      },
+      "title": {
+        "title": "Title",
+        "type": "string"
+      },
+      "product_url": {
+        "anyOf": [
+          {
+            "format": "uri",
+            "maxLength": 2083,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Product Url"
+      },
+      "price": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Price"
+      },
+      "currency": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Currency"
+      },
+      "monthly_sales": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Monthly Sales"
+      },
+      "monthly_revenue": {
+        "anyOf": [
+          {
+            "type": "number"
+          },
+          {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Monthly Revenue"
+      },
+      "review_count": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Review Count"
+      },
+      "rating": {
+        "anyOf": [
+          {
+            "maximum": 5.0,
+            "minimum": 0.0,
+            "type": "number"
+          },
+          {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Rating"
+      },
+      "source_as_of": {
+        "anyOf": [
+          {
+            "format": "date-time",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Source As Of"
+      },
+      "decision_scopes": {
+        "additionalProperties": {
+          "type": "string"
+        },
+        "title": "Decision Scopes",
+        "type": "object"
+      },
+      "inquiry_lane": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Inquiry Lane"
+      },
+      "reason_codes": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Reason Codes",
+        "type": "array"
+      },
+      "missing_fields": {
+        "items": {
+          "type": "string"
+        },
+        "title": "Missing Fields",
+        "type": "array"
+      },
+      "confidence": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "number"
+          },
+          {
+            "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Confidence"
+      }
+    },
+    "required": [
+      "candidate_id",
+      "skill_key",
+      "skill_version",
+      "site",
+      "marketplace",
+      "title"
+    ],
+    "title": "CommonCandidateOutput",
+    "type": "object"
+  },
+  "skills": {
+    "consumables_multipacks": {
+      "$defs": {
+        "ConsumablesMultipacksExtension": {
+          "properties": {
+            "selection_mode": {
+              "enum": [
+                "independent_discovery",
+                "tag_review"
+              ],
+              "title": "Selection Mode",
+              "type": "string"
+            },
+            "selection_lane": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Lane"
+            },
+            "selection_lane_decision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Lane Decision"
+            },
+            "buyer_segment": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Buyer Segment"
+            },
+            "use_context": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Use Context"
+            },
+            "depletion_mechanism": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Depletion Mechanism"
+            },
+            "branch_mode": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Branch Mode"
+            },
+            "pack_scope": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Pack Scope"
+            },
+            "pack_ladder": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Pack Ladder",
+              "type": "array"
+            },
+            "target_pack_tier": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Target Pack Tier"
+            },
+            "target_pack_count": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Target Pack Count"
+            },
+            "pack_market_fit_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Pack Market Fit Status"
+            },
+            "selected_launch_strategy_tags": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Selected Launch Strategy Tags",
+              "type": "array"
+            },
+            "primary_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Primary Type"
+            },
+            "primary_type_validation_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Primary Type Validation Status"
+            },
+            "consumable_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Consumable Status"
+            },
+            "repeat_cycle_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Repeat Cycle Days"
+            },
+            "large_pcs_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Large Pcs Status"
+            },
+            "stated_piece_count": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Stated Piece Count"
+            },
+            "effective_units": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Effective Units"
+            },
+            "retail_unit_price": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Retail Unit Price"
+            },
+            "benchmark_unit_price": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Benchmark Unit Price"
+            },
+            "unit_value_advantage": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Unit Value Advantage"
+            }
+          },
+          "required": [
+            "selection_mode"
+          ],
+          "title": "ConsumablesMultipacksExtension",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "skill_key": {
+          "title": "Skill Key",
+          "type": "string"
+        },
+        "skill_version": {
+          "title": "Skill Version",
+          "type": "string"
+        },
+        "site": {
+          "enum": [
+            "GB",
+            "DE",
+            "JP",
+            "CA"
+          ],
+          "title": "Site",
+          "type": "string"
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "type": "string"
+        },
+        "asin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asin"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "product_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Product Url"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "monthly_sales": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Sales"
+        },
+        "monthly_revenue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Revenue"
+        },
+        "review_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Count"
+        },
+        "rating": {
+          "anyOf": [
+            {
+              "maximum": 5.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rating"
+        },
+        "source_as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source As Of"
+        },
+        "decision_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Decision Scopes",
+          "type": "object"
+        },
+        "inquiry_lane": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inquiry Lane"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "missing_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Fields",
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "extension": {
+          "$ref": "#/$defs/ConsumablesMultipacksExtension"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "skill_key",
+        "skill_version",
+        "site",
+        "marketplace",
+        "title",
+        "extension"
+      ],
+      "title": "ConsumablesMultipacksCandidateOutput",
+      "type": "object"
+    },
+    "evergreen": {
+      "$defs": {
+        "EvergreenExtension": {
+          "properties": {
+            "evidence_months": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Evidence Months"
+            },
+            "effective_months": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Effective Months"
+            },
+            "top3_month_demand_share": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Top3 Month Demand Share"
+            },
+            "category_keyword_asin_consistency": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Category Keyword Asin Consistency"
+            },
+            "representative_asin_count": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Representative Asin Count"
+            },
+            "evergreen_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Evergreen Status"
+            },
+            "preflight_market_definition": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Preflight Market Definition"
+            },
+            "preflight_parent_density_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Preflight Parent Density Status"
+            },
+            "market_evidence_block_id": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Market Evidence Block Id"
+            }
+          },
+          "title": "EvergreenExtension",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "skill_key": {
+          "title": "Skill Key",
+          "type": "string"
+        },
+        "skill_version": {
+          "title": "Skill Version",
+          "type": "string"
+        },
+        "site": {
+          "enum": [
+            "GB",
+            "DE",
+            "JP",
+            "CA"
+          ],
+          "title": "Site",
+          "type": "string"
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "type": "string"
+        },
+        "asin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asin"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "product_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Product Url"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "monthly_sales": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Sales"
+        },
+        "monthly_revenue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Revenue"
+        },
+        "review_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Count"
+        },
+        "rating": {
+          "anyOf": [
+            {
+              "maximum": 5.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rating"
+        },
+        "source_as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source As Of"
+        },
+        "decision_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Decision Scopes",
+          "type": "object"
+        },
+        "inquiry_lane": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inquiry Lane"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "missing_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Fields",
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "extension": {
+          "$ref": "#/$defs/EvergreenExtension"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "skill_key",
+        "skill_version",
+        "site",
+        "marketplace",
+        "title",
+        "extension"
+      ],
+      "title": "EvergreenCandidateOutput",
+      "type": "object"
+    },
+    "holiday": {
+      "$defs": {
+        "HolidayExtension": {
+          "properties": {
+            "event_name": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Event Name"
+            },
+            "event_scope": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Event Scope"
+            },
+            "target_event_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Target Event Date"
+            },
+            "repeat_cycles": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Repeat Cycles"
+            },
+            "shopping_window_class": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Shopping Window Class"
+            },
+            "shopping_window_start_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Shopping Window Start Date"
+            },
+            "shopping_window_end_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Shopping Window End Date"
+            },
+            "selection_open_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Open Date"
+            },
+            "selection_start_deadline_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Start Deadline Date"
+            },
+            "development_completion_deadline_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Development Completion Deadline Date"
+            },
+            "holiday_window_share": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Holiday Window Share"
+            },
+            "peak_date_shift_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Peak Date Shift Days"
+            },
+            "required_launch_lead_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Required Launch Lead Days"
+            },
+            "development_slack_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Development Slack Days"
+            },
+            "lead_shortfall_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Lead Shortfall Days"
+            },
+            "latest_purchase_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Latest Purchase Date"
+            },
+            "stop_replenishment_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Stop Replenishment Date"
+            },
+            "inventory_exit_plan_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Inventory Exit Plan Status"
+            },
+            "holiday_intent_evidence": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Holiday Intent Evidence",
+              "type": "array"
+            },
+            "customization_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Customization Status"
+            }
+          },
+          "title": "HolidayExtension",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "skill_key": {
+          "title": "Skill Key",
+          "type": "string"
+        },
+        "skill_version": {
+          "title": "Skill Version",
+          "type": "string"
+        },
+        "site": {
+          "enum": [
+            "GB",
+            "DE",
+            "JP",
+            "CA"
+          ],
+          "title": "Site",
+          "type": "string"
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "type": "string"
+        },
+        "asin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asin"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "product_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Product Url"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "monthly_sales": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Sales"
+        },
+        "monthly_revenue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Revenue"
+        },
+        "review_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Count"
+        },
+        "rating": {
+          "anyOf": [
+            {
+              "maximum": 5.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rating"
+        },
+        "source_as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source As Of"
+        },
+        "decision_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Decision Scopes",
+          "type": "object"
+        },
+        "inquiry_lane": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inquiry Lane"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "missing_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Fields",
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "extension": {
+          "$ref": "#/$defs/HolidayExtension"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "skill_key",
+        "skill_version",
+        "site",
+        "marketplace",
+        "title",
+        "extension"
+      ],
+      "title": "HolidayCandidateOutput",
+      "type": "object"
+    },
+    "seasonal": {
+      "$defs": {
+        "SeasonalExtension": {
+          "properties": {
+            "evidence_months": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Evidence Months"
+            },
+            "effective_months_per_cycle": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Effective Months Per Cycle"
+            },
+            "top3_month_demand_share": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Top3 Month Demand Share"
+            },
+            "peak_start": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Peak Start"
+            },
+            "peak_end": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Peak End"
+            },
+            "peak_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Peak Date"
+            },
+            "yoy_window_overlap": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Yoy Window Overlap"
+            },
+            "yoy_peak_shift": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Yoy Peak Shift"
+            },
+            "selection_open_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Open Date"
+            },
+            "selection_start_deadline_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Start Deadline Date"
+            },
+            "selection_timing_stage": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Timing Stage"
+            },
+            "required_launch_lead_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Required Launch Lead Days"
+            },
+            "days_to_window_start": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Days To Window Start"
+            },
+            "lead_shortfall_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Lead Shortfall Days"
+            },
+            "latest_purchase_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Latest Purchase Date"
+            },
+            "latest_fba_arrival_date": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Latest Fba Arrival Date"
+            },
+            "timing_scope": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Timing Scope"
+            },
+            "inventory_exit_plan_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Inventory Exit Plan Status"
+            }
+          },
+          "title": "SeasonalExtension",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "skill_key": {
+          "title": "Skill Key",
+          "type": "string"
+        },
+        "skill_version": {
+          "title": "Skill Version",
+          "type": "string"
+        },
+        "site": {
+          "enum": [
+            "GB",
+            "DE",
+            "JP",
+            "CA"
+          ],
+          "title": "Site",
+          "type": "string"
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "type": "string"
+        },
+        "asin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asin"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "product_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Product Url"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "monthly_sales": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Sales"
+        },
+        "monthly_revenue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Revenue"
+        },
+        "review_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Count"
+        },
+        "rating": {
+          "anyOf": [
+            {
+              "maximum": 5.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rating"
+        },
+        "source_as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source As Of"
+        },
+        "decision_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Decision Scopes",
+          "type": "object"
+        },
+        "inquiry_lane": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inquiry Lane"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "missing_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Fields",
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "extension": {
+          "$ref": "#/$defs/SeasonalExtension"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "skill_key",
+        "skill_version",
+        "site",
+        "marketplace",
+        "title",
+        "extension"
+      ],
+      "title": "SeasonalCandidateOutput",
+      "type": "object"
+    },
+    "trending_accessories": {
+      "$defs": {
+        "TrendingAccessoriesExtension": {
+          "properties": {
+            "selection_lane": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Selection Lane"
+            },
+            "primary_type_route_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Primary Type Route Status"
+            },
+            "portfolio_fit_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Portfolio Fit Status"
+            },
+            "portfolio_exclusion_reason": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Portfolio Exclusion Reason"
+            },
+            "mother_scope": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Mother Scope"
+            },
+            "main_product_asin_or_keyword": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Main Product Asin Or Keyword"
+            },
+            "mother_momentum_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Mother Momentum Path"
+            },
+            "accessory_evidence_path": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Accessory Evidence Path"
+            },
+            "main_search_growth_ratio": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Main Search Growth Ratio"
+            },
+            "main_sales_growth_ratio": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Main Sales Growth Ratio"
+            },
+            "trend_duration_days": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Trend Duration Days"
+            },
+            "accessory_growth_ratio": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Accessory Growth Ratio"
+            },
+            "compatibility_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Compatibility Status"
+            },
+            "supported_models": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Supported Models",
+              "type": "array"
+            },
+            "ecosystem_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Ecosystem Type"
+            },
+            "trademark_usage_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Trademark Usage Status"
+            },
+            "remaining_heat_days_low": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Remaining Heat Days Low"
+            },
+            "remaining_heat_days_high": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Remaining Heat Days High"
+            },
+            "causal_chain_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Causal Chain Status"
+            }
+          },
+          "title": "TrendingAccessoriesExtension",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "skill_key": {
+          "title": "Skill Key",
+          "type": "string"
+        },
+        "skill_version": {
+          "title": "Skill Version",
+          "type": "string"
+        },
+        "site": {
+          "enum": [
+            "GB",
+            "DE",
+            "JP",
+            "CA"
+          ],
+          "title": "Site",
+          "type": "string"
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "type": "string"
+        },
+        "asin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asin"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "product_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Product Url"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "monthly_sales": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Sales"
+        },
+        "monthly_revenue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Revenue"
+        },
+        "review_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Count"
+        },
+        "rating": {
+          "anyOf": [
+            {
+              "maximum": 5.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rating"
+        },
+        "source_as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source As Of"
+        },
+        "decision_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Decision Scopes",
+          "type": "object"
+        },
+        "inquiry_lane": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inquiry Lane"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "missing_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Fields",
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "extension": {
+          "$ref": "#/$defs/TrendingAccessoriesExtension"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "skill_key",
+        "skill_version",
+        "site",
+        "marketplace",
+        "title",
+        "extension"
+      ],
+      "title": "TrendingAccessoriesCandidateOutput",
+      "type": "object"
+    },
+    "validated_variations": {
+      "$defs": {
+        "ValidatedVariationsExtension": {
+          "properties": {
+            "base_asin": {
+              "title": "Base Asin",
+              "type": "string"
+            },
+            "base_primary_type": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Base Primary Type"
+            },
+            "base_validation_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Base Validation Status"
+            },
+            "base_stability_status": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Base Stability Status"
+            },
+            "existing_parent_asin": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Existing Parent Asin"
+            },
+            "existing_child_count": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Existing Child Count"
+            },
+            "proposed_dimension": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Proposed Dimension"
+            },
+            "proposed_child_value": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Proposed Child Value"
+            },
+            "difference_description": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Difference Description"
+            },
+            "core_function_changed": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Core Function Changed"
+            },
+            "category_theme_supported": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Category Theme Supported"
+            },
+            "proposed_variation_theme": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Proposed Variation Theme"
+            },
+            "relationship_route": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Relationship Route"
+            },
+            "relationship_decision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Relationship Decision"
+            },
+            "review_policy_as_of": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Review Policy As Of"
+            },
+            "review_sharing_expected": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Review Sharing Expected"
+            },
+            "review_sharing_basis": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Review Sharing Basis"
+            },
+            "variant_keyword_evidence": {
+              "items": {
+                "type": "string"
+              },
+              "title": "Variant Keyword Evidence",
+              "type": "array"
+            },
+            "estimated_target_offer_monthly_sales": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Estimated Target Offer Monthly Sales"
+            },
+            "cannibalization_rate": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Cannibalization Rate"
+            },
+            "incremental_portfolio_profit": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Incremental Portfolio Profit"
+            },
+            "new_children_in_batch": {
+              "anyOf": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "New Children In Batch"
+            },
+            "matrix_stage": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Matrix Stage"
+            },
+            "offer_decision": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Offer Decision"
+            }
+          },
+          "required": [
+            "base_asin"
+          ],
+          "title": "ValidatedVariationsExtension",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "candidate_id": {
+          "title": "Candidate Id",
+          "type": "string"
+        },
+        "skill_key": {
+          "title": "Skill Key",
+          "type": "string"
+        },
+        "skill_version": {
+          "title": "Skill Version",
+          "type": "string"
+        },
+        "site": {
+          "enum": [
+            "GB",
+            "DE",
+            "JP",
+            "CA"
+          ],
+          "title": "Site",
+          "type": "string"
+        },
+        "marketplace": {
+          "title": "Marketplace",
+          "type": "string"
+        },
+        "asin": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Asin"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "product_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Product Url"
+        },
+        "price": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Price"
+        },
+        "currency": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Currency"
+        },
+        "monthly_sales": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Sales"
+        },
+        "monthly_revenue": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Monthly Revenue"
+        },
+        "review_count": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Review Count"
+        },
+        "rating": {
+          "anyOf": [
+            {
+              "maximum": 5.0,
+              "minimum": 0.0,
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rating"
+        },
+        "source_as_of": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source As Of"
+        },
+        "decision_scopes": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Decision Scopes",
+          "type": "object"
+        },
+        "inquiry_lane": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Inquiry Lane"
+        },
+        "reason_codes": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reason Codes",
+          "type": "array"
+        },
+        "missing_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Fields",
+          "type": "array"
+        },
+        "confidence": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Confidence"
+        },
+        "extension": {
+          "$ref": "#/$defs/ValidatedVariationsExtension"
+        }
+      },
+      "required": [
+        "candidate_id",
+        "skill_key",
+        "skill_version",
+        "site",
+        "marketplace",
+        "title",
+        "extension"
+      ],
+      "title": "ValidatedVariationsCandidateOutput",
+      "type": "object"
+    }
+  }
+}

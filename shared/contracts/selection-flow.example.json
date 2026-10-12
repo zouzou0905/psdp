@@ -1,0 +1,70 @@
+{
+  "selection": {
+    "selection_id": "60000000-0000-0000-0000-000000000006",
+    "store_id": "store_operations_demo",
+    "marketplace": "amazon-us",
+    "product_name": "DEMO candidate",
+    "source_type": "ai_skill_sorftime",
+    "source_ref": "task://tsk_demo",
+    "source_snapshot_ref": "snapshot://market_demo",
+    "source_version": "skill-v1",
+    "owner_id": "10000000-0000-0000-0000-000000000001",
+    "stage": "sourced",
+    "revision": 1,
+    "created_at": "2026-10-08T00:00:00Z",
+    "updated_at": "2026-10-08T00:00:00Z"
+  },
+  "quotation_update": {
+    "supplier_name": "DEMO supplier",
+    "unit_cost": "8.2500",
+    "currency": "USD",
+    "value_status": "confirmed",
+    "moq": 100,
+    "lead_time_days": 20,
+    "freight_per_unit": "1.0000",
+    "other_cost_per_unit": null,
+    "target_price": "19.9900",
+    "notes": "Manually recorded demo quotation",
+    "expected_revision": 1
+  },
+  "final_selection_update": {
+    "decision": "selected",
+    "reason": "Manual operations decision",
+    "expected_revision": 2
+  },
+  "competitors_update": {
+    "competitors": [
+      {
+        "title": "Competitor 1",
+        "bullets": [
+          "Point 1",
+          "Point 2",
+          "Point 3",
+          "Point 4",
+          "Point 5"
+        ]
+      },
+      {
+        "title": "Competitor 2",
+        "bullets": [
+          "Point 1",
+          "Point 2",
+          "Point 3",
+          "Point 4",
+          "Point 5"
+        ]
+      },
+      {
+        "title": "Competitor 3",
+        "bullets": [
+          "Point 1",
+          "Point 2",
+          "Point 3",
+          "Point 4",
+          "Point 5"
+        ]
+      }
+    ],
+    "expected_revision": 3
+  }
+}

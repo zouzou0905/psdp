@@ -1,0 +1,1 @@
+"""Administrator-only observability queries."""

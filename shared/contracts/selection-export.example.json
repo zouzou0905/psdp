@@ -1,0 +1,58 @@
+{
+  "create_requests": {
+    "initial_selection": {
+      "stage": "initial_selection",
+      "store_ids": [
+        "store_procurement_demo"
+      ],
+      "search": "demo candidate",
+      "marketplace": "amazon-us",
+      "source_type": "ai_skill_sorftime"
+    },
+    "quotation": {
+      "stage": "quotation",
+      "store_ids": [
+        "store_procurement_demo"
+      ],
+      "search": "demo candidate",
+      "marketplace": "amazon-us"
+    }
+  },
+  "job_response": {
+    "export_id": "70000000-0000-0000-0000-000000000007",
+    "stage": "initial_selection",
+    "snapshot_id": "71000000-0000-0000-0000-000000000007",
+    "schema_version": "initial_selection.v1",
+    "status": "completed",
+    "row_count": 1,
+    "file_name": "AI选品表_演示店铺_20261009_71000000.xlsx",
+    "file_checksum": "0000000000000000000000000000000000000000000000000000000000000000",
+    "error_code": null,
+    "trace_id": "trace_demo",
+    "created_at": "2026-10-09T00:00:00Z",
+    "completed_at": "2026-10-09T00:00:01Z",
+    "expires_at": "2026-10-10T00:00:00Z"
+  },
+  "download": {
+    "method": "GET",
+    "path": "/api/v1/selection-exports/{export_id}/download",
+    "authentication_required": true,
+    "public_url": false
+  },
+  "permissions": {
+    "initial_selection": "selection.export",
+    "quotation": "quotation.export"
+  },
+  "supported_stages": [
+    "initial_selection",
+    "quotation"
+  ],
+  "quotation_rules": {
+    "modules": [
+      "procurement",
+      "admin"
+    ],
+    "submitted_only": true,
+    "operations_allowed": false
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "amazon-referral-fees-v1",
+  "snapshot_as_of": "2026-09-16",
+  "scope": "Common referral fee categories for GB, DE, JP and CA. Not exhaustive; unmapped or ambiguous categories require a live official lookup.",
+  "calculation_base": "Amazon total sales price, including item price, buyer-paid shipping and gift wrapping; apply the category percentage or applicable per-item minimum, whichever is greater.",
+  "sources": [
+    {"site":"GB","url":"https://sell.amazon.co.uk/pricing","verified_at":"2026-09-16"},
+    {"site":"DE","url":"https://sell.amazon.de/en/preisgestaltung","verified_at":"2026-09-16"},
+    {"site":"GB_DE","url":"https://m.media-amazon.com/images/G/02/sell/images/260410-FBA-Rate-Card-EN.pdf","verified_at":"2026-09-16"},
+    {"site":"JP","url":"https://sell.amazon.co.jp/pricing","verified_at":"2026-09-16"},
+    {"site":"CA","url":"https://sell.amazon.ca/pricing","verified_at":"2026-09-16"}
+  ],
+  "GB": {
+    "currency":"GBP",
+    "default_minimum":0.25,
+    "common_categories": {
+      "Home Products":{"tiers":[{"max_total_price":20,"rate":0.08},{"above":20,"rate":0.15}]},
+      "Kitchen":{"rate":0.15},
+      "Home Linen and Rugs":{"rate":0.15},
+      "Toys and Games":{"rate":0.15},
+      "Office Products":{"rate":0.15},
+      "Lawn and Garden":{"rate":0.15},
+      "Furniture Accessories":{"rate":0.13},
+      "Tools and Home Improvement":{"rate":0.13},
+      "Clothing and Accessories":{"tiers":[{"max_total_price":15,"rate":0.05},{"min_exclusive":15,"max_total_price":20,"rate":0.10},{"above":20,"rate":0.15}]},
+      "Baby Products":{"tiers":[{"max_total_price":10,"rate":0.08},{"above":10,"rate":0.15}]},
+      "Everything else":{"rate":0.15,"use_only_when_official_category_mapping_proves_no_existing_category":true}
+    }
+  },
+  "DE": {
+    "currency":"EUR",
+    "default_minimum":0.30,
+    "common_categories": {
+      "Home Products":{"tiers":[{"max_total_price":20,"rate":0.08},{"above":20,"rate":0.15}]},
+      "Kitchen":{"rate":0.15},
+      "Home Textiles and Rugs":{"rate":0.15},
+      "Toys and Games":{"rate":0.15},
+      "Office Supplies":{"rate":0.15},
+      "Lawn and Garden":{"rate":0.15},
+      "Furniture Accessories":{"rate":0.13},
+      "DIY and Tools":{"rate":0.13},
+      "Clothing and Accessories":{"tiers":[{"max_total_price":15,"rate":0.05},{"min_exclusive":15,"max_total_price":20,"rate":0.10},{"above":20,"rate":0.15}]},
+      "Baby Products":{"tiers":[{"max_total_price":10,"rate":0.08},{"above":10,"rate":0.15}]},
+      "Everything else":{"rate":0.15,"use_only_when_official_category_mapping_proves_no_existing_category":true}
+    }
+  },
+  "JP": {
+    "currency":"JPY",
+    "default_minimum":30,
+    "amounts_exclude_tax":true,
+    "common_categories": {
+      "Home and Kitchen":{"tiers":[{"max_total_price":750,"rate":0.05},{"above":750,"rate":0.154}]},
+      "Toys and Games":{"tiers":[{"max_total_price":750,"rate":0.05},{"above":750,"rate":0.104}]},
+      "Stationery and Office Products":{"tiers":[{"max_total_price":750,"rate":0.05},{"above":750,"rate":0.154}]},
+      "Sports and Outdoors":{"tiers":[{"max_total_price":750,"rate":0.05},{"above":750,"rate":0.104}]},
+      "Consumer Electronics":{"tiers":[{"max_total_price":750,"rate":0.05},{"above":750,"rate":0.084}]}
+    }
+  },
+  "CA": {
+    "currency":"CAD",
+    "default_minimum":0.40,
+    "common_categories": {
+      "Home and Kitchen":{"rate":0.15},
+      "Toys and Games":{"rate":0.15},
+      "Office Products":{"rate":0.15},
+      "Lawn and Garden":{"rate":0.15},
+      "Baby Products":{"tiers":[{"max_total_price":15,"rate":0.08},{"above":15,"rate":0.15}]},
+      "Beauty, Health and Personal Care":{"tiers":[{"max_total_price":15,"rate":0.08},{"above":15,"rate":0.15}]},
+      "Everything Else":{"rate":0.15,"use_only_when_official_category_mapping_proves_no_existing_category":true}
+    }
+  }
+}

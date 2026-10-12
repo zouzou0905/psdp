@@ -1,0 +1,16 @@
+{
+  "operations_default": [
+    "listing_copy.read",
+    "listing_copy.generate",
+    "listing_copy.edit",
+    "listing_copy.review",
+    "listing_copy.history.read"
+  ],
+  "procurement_default": [],
+  "admin_default": [],
+  "rules": {
+    "module": "operations for operators; admin for explicitly authorized administrators",
+    "store_scope_required": true,
+    "admin_requires_explicit_permission": true
+  }
+}

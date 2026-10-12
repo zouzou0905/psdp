@@ -1,0 +1,6 @@
+{
+  "modules": [
+    "operations"
+  ],
+  "default_landing": "/operations"
+}

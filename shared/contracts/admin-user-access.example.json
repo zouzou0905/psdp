@@ -1,0 +1,32 @@
+{
+  "user_id": "10000000-0000-0000-0000-000000000001",
+  "username": "operations_demo",
+  "display_name": "Operations Demo (DEMO)",
+  "is_active": true,
+  "roles": [
+    "operations"
+  ],
+  "modules": [
+    "operations"
+  ],
+  "direct_permissions": [
+    "listing_copy.edit"
+  ],
+  "effective_permissions": [
+    "listing_copy.edit",
+    "listing_copy.read",
+    "operations.dashboard.read"
+  ],
+  "scopes": {
+    "organization_ids": [
+      "org_demo"
+    ],
+    "team_ids": [
+      "team_operations"
+    ],
+    "store_ids": [
+      "store_operations_demo"
+    ]
+  },
+  "authorization_revision": 1
+}

@@ -1,0 +1,12 @@
+interface:
+  display_name: "亚马逊已验证产品扩展"
+  short_description: "验证已售产品的合法轻变体、组合、包装定制及每个Offer独立收益"
+  default_prompt: "使用 $select-sorftime-amazon-validated-variations 为一个已验证Amazon产品设计并审查小规模合法扩展。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sorftime"
+      description: "Sorftime Amazon market, variation, keyword, review, and procurement-space validation"
+      transport: "streamable_http"
+      url: "https://mcp.sorftime.com"

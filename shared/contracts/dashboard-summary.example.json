@@ -1,0 +1,41 @@
+{
+  "viewer": {
+    "user_id": "10000000-0000-0000-0000-000000000001",
+    "username": "operations_demo",
+    "display_name": "Operations Demo (DEMO)",
+    "roles": [
+      "operations"
+    ],
+    "modules": [
+      "operations"
+    ],
+    "permissions": [
+      "operations.dashboard.read",
+      "project.read_assigned"
+    ],
+    "scope": {
+      "organization_ids": [
+        "org_demo"
+      ],
+      "team_ids": [
+        "team_operations"
+      ],
+      "store_ids": [
+        "store_operations_demo"
+      ]
+    },
+    "authorization_revision": 1
+  },
+  "generated_at": "2026-10-06T00:00:00Z",
+  "workspace": "operations",
+  "data_status": "demo",
+  "disclaimer": "Demo data only; it is not an authoritative operating fact.",
+  "counts": {
+    "pending_tasks": 0,
+    "active_projects": 0,
+    "exceptions": 0
+  },
+  "work_items": [],
+  "projects": [],
+  "alerts": []
+}

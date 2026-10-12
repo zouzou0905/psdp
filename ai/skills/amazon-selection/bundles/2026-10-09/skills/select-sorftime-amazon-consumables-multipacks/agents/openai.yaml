@@ -1,0 +1,12 @@
+interface:
+  display_name: "亚马逊消耗品与大PCS选品"
+  short_description: "独立发现消耗品和包装规格机会，兼顾小包装与大PCS"
+  default_prompt: "使用 $select-sorftime-amazon-consumables-multipacks 按目标站真实需求独立发现消耗品，并比较小包装、标准包装和大PCS机会。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sorftime"
+      description: "Sorftime Amazon market data and procurement-space validation"
+      transport: "streamable_http"
+      url: "https://mcp.sorftime.com"

@@ -1,0 +1,23 @@
+{
+  "request": {
+    "username": "new_operator",
+    "display_name": "New Operator",
+    "initial_password": "<local-secret-at-least-12-characters>"
+  },
+  "response": {
+    "user_id": "50000000-0000-0000-0000-000000000005",
+    "username": "new_operator",
+    "display_name": "New Operator",
+    "is_active": true,
+    "roles": [],
+    "modules": [],
+    "direct_permissions": [],
+    "effective_permissions": [],
+    "scopes": {
+      "organization_ids": [],
+      "team_ids": [],
+      "store_ids": []
+    },
+    "authorization_revision": 1
+  }
+}

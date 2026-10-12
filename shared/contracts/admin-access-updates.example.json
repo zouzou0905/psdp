@@ -1,0 +1,23 @@
+{
+  "roles": {
+    "roles": [
+      "operations"
+    ],
+    "permissions": [
+      "listing_copy.edit"
+    ],
+    "expected_authorization_revision": 1
+  },
+  "modules": {
+    "modules": [
+      "operations"
+    ],
+    "expected_authorization_revision": 1
+  },
+  "store_scopes": {
+    "store_ids": [
+      "store_operations_demo"
+    ],
+    "expected_authorization_revision": 1
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "amazon-fba-peak-overlay-v1",
+  "snapshot_as_of": "2026-09-16",
+  "base_snapshot": "fba-fees-2026-09-21.json",
+  "source": {
+    "title": "Amazon Peak season 2026: Inventory dates, peak fees, deal cutoffs and promotions",
+    "url": "https://sellercentral.amazon.co.uk/seller-forums/discussions/t/d8c34b0b-86ed-4aec-9b0a-8be6eabb8fb0?mons_sel_locale=en_GB",
+    "verified_at": "2026-09-16"
+  },
+  "period": {"from":"2026-10-15","through":"2027-01-14"},
+  "GB": {
+    "applies_to":["small_parcel","standard_parcel","large_envelope","extra_large_envelope"],
+    "excluded":["oversize","low_price_fba"],
+    "published_average_addon_gbp":{"parcel":0.12,"large_or_extra_large_envelope":0.07},
+    "precision_rule":"Published values are averages, not exact per-tier fees. Use only for marked rough scenarios. Launch approval during the peak period requires the exact target-offer fee from Amazon Revenue Calculator or Fee Preview."
+  },
+  "DE": {
+    "applies_to":["small_parcel","standard_parcel"],
+    "published_average_addon_eur":0.27,
+    "precision_rule":"Published value is an average. Exact target-offer peak fee requires Amazon Revenue Calculator or Fee Preview."
+  },
+  "mandatory_recheck_on_or_after":"2027-01-15",
+  "mandatory_recheck_reason":"Peak period ends and non-peak fees should be revalidated before reverting."
+}

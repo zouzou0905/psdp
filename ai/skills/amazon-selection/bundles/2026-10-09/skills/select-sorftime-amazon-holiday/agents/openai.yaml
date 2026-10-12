@@ -1,0 +1,12 @@
+interface:
+  display_name: "亚马逊节日事件品选品"
+  short_description: "验证节日意图、跨周期需求、同阶段蓝海证据和库存退出风险"
+  default_prompt: "使用 $select-sorftime-amazon-holiday 评估一个目标站节日品机会，并计算最晚到仓日、定制可行性和退场方案。"
+
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "sorftime"
+      description: "Sorftime Amazon market data and procurement-space validation"
+      transport: "streamable_http"
+      url: "https://mcp.sorftime.com"

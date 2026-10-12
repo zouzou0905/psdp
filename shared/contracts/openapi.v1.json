@@ -1,0 +1,5062 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "AI Product Operations Platform API",
+    "description": "Governed backend for the AI product operations platform. Demo responses are not authoritative operating facts.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/health/live": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Process liveness",
+        "operationId": "liveness_health_live_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LivenessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "tags": [
+          "health"
+        ],
+        "summary": "Dependency readiness",
+        "operationId": "readiness_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadinessResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "tags": [
+          "identity"
+        ],
+        "summary": "Create an HttpOnly cookie session",
+        "operationId": "login_api_v1_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessContextResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "tags": [
+          "identity"
+        ],
+        "summary": "Invalidate tokens",
+        "operationId": "logout_api_v1_auth_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "tags": [
+          "identity"
+        ],
+        "summary": "Get the authenticated user",
+        "operationId": "me_api_v1_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessContextResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/me/access-context": {
+      "get": {
+        "tags": [
+          "identity"
+        ],
+        "summary": "Get server-resolved authorization context",
+        "operationId": "access_context_api_v1_me_access_context_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccessContextResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/me/modules": {
+      "get": {
+        "tags": [
+          "identity"
+        ],
+        "summary": "My Modules",
+        "operationId": "my_modules_api_v1_me_modules_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModuleListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/me/stores": {
+      "get": {
+        "tags": [
+          "identity"
+        ],
+        "summary": "My Stores",
+        "operationId": "my_stores_api_v1_me_stores_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/users": {
+      "get": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "List Users",
+        "operationId": "list_users_api_v1_admin_users_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "Create User",
+        "operationId": "create_user_api_v1_admin_users_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateUserRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/users/{user_id}": {
+      "get": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "Get User",
+        "operationId": "get_user_api_v1_admin_users__user_id__get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}/enable": {
+      "post": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "Enable User",
+        "operationId": "enable_user_api_v1_admin_users__user_id__enable_post",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}/disable": {
+      "post": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "Disable User",
+        "operationId": "disable_user_api_v1_admin_users__user_id__disable_post",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}/roles": {
+      "put": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "Update Roles",
+        "operationId": "update_roles_api_v1_admin_users__user_id__roles_put",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRolesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}/modules": {
+      "put": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "Update Modules",
+        "operationId": "update_modules_api_v1_admin_users__user_id__modules_put",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateModulesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{user_id}/store-scopes": {
+      "put": {
+        "tags": [
+          "admin-users"
+        ],
+        "summary": "Update Store Scopes",
+        "operationId": "update_store_scopes_api_v1_admin_users__user_id__store_scopes_put",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "User Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStoreScopesRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserAccessResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/system/info": {
+      "get": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Get safe runtime metadata",
+        "operationId": "system_info_api_v1_system_info_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemInfoResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/dashboard/summary": {
+      "get": {
+        "tags": [
+          "dashboard"
+        ],
+        "summary": "Get the role workspace summary",
+        "operationId": "get_dashboard_summary_api_v1_dashboard_summary_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/OperationsDashboardResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/ProcurementDashboardResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/CreativeDashboardResponse"
+                    },
+                    {
+                      "$ref": "#/components/schemas/AdminDashboardResponse"
+                    }
+                  ],
+                  "title": "Response Get Dashboard Summary Api V1 Dashboard Summary Get",
+                  "discriminator": {
+                    "propertyName": "workspace",
+                    "mapping": {
+                      "operations": "#/components/schemas/OperationsDashboardResponse",
+                      "procurement": "#/components/schemas/ProcurementDashboardResponse",
+                      "creative": "#/components/schemas/CreativeDashboardResponse",
+                      "admin": "#/components/schemas/AdminDashboardResponse"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/operations/dashboard": {
+      "get": {
+        "tags": [
+          "module-dashboards"
+        ],
+        "summary": "Get Operations Dashboard",
+        "operationId": "get_operations_dashboard_api_v1_operations_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperationsDashboardResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/procurement/dashboard": {
+      "get": {
+        "tags": [
+          "module-dashboards"
+        ],
+        "summary": "Get Procurement Dashboard",
+        "operationId": "get_procurement_dashboard_api_v1_procurement_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProcurementDashboardResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/creative/dashboard": {
+      "get": {
+        "tags": [
+          "module-dashboards"
+        ],
+        "summary": "Get Creative Dashboard",
+        "operationId": "get_creative_dashboard_api_v1_creative_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreativeDashboardResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/dashboard": {
+      "get": {
+        "tags": [
+          "module-dashboards"
+        ],
+        "summary": "Get Admin Dashboard",
+        "operationId": "get_admin_dashboard_api_v1_admin_dashboard_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminDashboardResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/operations/projects": {
+      "get": {
+        "tags": [
+          "role-workspaces"
+        ],
+        "summary": "List Operations Projects",
+        "operationId": "list_operations_projects_api_v1_operations_projects_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceRecordListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/operations/projects/{record_id}": {
+      "get": {
+        "tags": [
+          "role-workspaces"
+        ],
+        "summary": "Get Operations Project",
+        "operationId": "get_operations_project_api_v1_operations_projects__record_id__get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "record_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Record Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceRecordResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/procurement/purchase-requests": {
+      "get": {
+        "tags": [
+          "role-workspaces"
+        ],
+        "summary": "List Purchase Requests",
+        "operationId": "list_purchase_requests_api_v1_procurement_purchase_requests_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceRecordListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/creative/content-tasks": {
+      "get": {
+        "tags": [
+          "role-workspaces"
+        ],
+        "summary": "List Content Tasks",
+        "operationId": "list_content_tasks_api_v1_creative_content_tasks_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkspaceRecordListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/errors": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "List Errors",
+        "operationId": "list_errors_api_v1_admin_errors_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/ai-feedback": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "List Ai Feedback",
+        "operationId": "list_ai_feedback_api_v1_admin_ai_feedback_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiFeedbackListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/audit-logs": {
+      "get": {
+        "tags": [
+          "admin"
+        ],
+        "summary": "List Audit Logs",
+        "operationId": "list_audit_logs_api_v1_admin_audit_logs_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 200,
+              "minimum": 1,
+              "default": 100,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuditLogListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/capabilities/deepseek/status": {
+      "get": {
+        "tags": [
+          "admin-capabilities"
+        ],
+        "summary": "Deepseek Status",
+        "operationId": "deepseek_status_api_v1_admin_capabilities_deepseek_status_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeepSeekConnectionStatus"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/stores": {
+      "get": {
+        "tags": [
+          "admin-stores"
+        ],
+        "summary": "List Stores",
+        "operationId": "list_stores_api_v1_admin_stores_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "admin-stores"
+        ],
+        "summary": "Create Store",
+        "operationId": "create_store_api_v1_admin_stores_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateStoreRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/admin/stores/{store_id}": {
+      "patch": {
+        "tags": [
+          "admin-stores"
+        ],
+        "summary": "Update Store",
+        "operationId": "update_store_api_v1_admin_stores__store_id__patch",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "store_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Store Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateStoreRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StoreResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-records": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "List Records",
+        "operationId": "list_records_api_v1_selection_records_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/selection-records/{selection_id}": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Get Record",
+        "operationId": "get_record_api_v1_selection_records__selection_id__get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionRecordResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-records/{selection_id}/quotation": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Get Quotation",
+        "operationId": "get_quotation_api_v1_selection_records__selection_id__quotation_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuotationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Save Quotation",
+        "operationId": "save_quotation_api_v1_selection_records__selection_id__quotation_put",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuotationUpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuotationResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-records/{selection_id}/profit-review": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Get Profit Review",
+        "operationId": "get_profit_review_api_v1_selection_records__selection_id__profit_review_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProfitReviewResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-records/{selection_id}/final-selection": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Get Final Selection",
+        "operationId": "get_final_selection_api_v1_selection_records__selection_id__final_selection_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinalSelectionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Save Final Selection",
+        "operationId": "save_final_selection_api_v1_selection_records__selection_id__final_selection_put",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FinalSelectionUpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FinalSelectionResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-records/{selection_id}/competitors": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Get Competitors",
+        "operationId": "get_competitors_api_v1_selection_records__selection_id__competitors_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetitorListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Save Competitors",
+        "operationId": "save_competitors_api_v1_selection_records__selection_id__competitors_put",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompetitorUpsertRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CompetitorListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-records/{selection_id}/ai-tasks": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "List Ai Tasks",
+        "operationId": "list_ai_tasks_api_v1_selection_records__selection_id__ai_tasks_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiTaskListResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-records/{selection_id}/listing-draft": {
+      "get": {
+        "tags": [
+          "selection-flow"
+        ],
+        "summary": "Get Listing Draft",
+        "operationId": "get_listing_draft_api_v1_selection_records__selection_id__listing_draft_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "selection_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Selection Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListingDraftResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-skills": {
+      "get": {
+        "tags": [
+          "selection-skills"
+        ],
+        "summary": "List Selection Skills",
+        "operationId": "list_selection_skills_api_v1_selection_skills_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionSkillListResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/selection-skills/{skill_key}": {
+      "get": {
+        "tags": [
+          "selection-skills"
+        ],
+        "summary": "Get Selection Skill",
+        "operationId": "get_selection_skill_api_v1_selection_skills__skill_key__get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "skill_key",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Skill Key"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionSkillDetail"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-exports": {
+      "post": {
+        "tags": [
+          "selection-exports"
+        ],
+        "summary": "Create Selection Export",
+        "operationId": "create_selection_export_api_v1_selection_exports_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SelectionExportCreateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionExportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ]
+      }
+    },
+    "/api/v1/selection-exports/{export_id}": {
+      "get": {
+        "tags": [
+          "selection-exports"
+        ],
+        "summary": "Get Selection Export",
+        "operationId": "get_selection_export_api_v1_selection_exports__export_id__get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "export_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Export Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SelectionExportResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/selection-exports/{export_id}/download": {
+      "get": {
+        "tags": [
+          "selection-exports"
+        ],
+        "summary": "Download Selection Export",
+        "operationId": "download_selection_export_api_v1_selection_exports__export_id__download_get",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "export_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid",
+              "title": "Export Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccessContextResponse": {
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/AccessContextUser"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/RoleName"
+            },
+            "type": "array",
+            "title": "Roles"
+          },
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/ModuleCode"
+            },
+            "type": "array",
+            "title": "Modules"
+          },
+          "permissions": {
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            },
+            "type": "array",
+            "title": "Permissions"
+          },
+          "scopes": {
+            "$ref": "#/components/schemas/DataScope"
+          },
+          "default_landing": {
+            "type": "string",
+            "title": "Default Landing"
+          },
+          "authorization_revision": {
+            "type": "integer",
+            "title": "Authorization Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user",
+          "roles",
+          "modules",
+          "permissions",
+          "scopes",
+          "default_landing",
+          "authorization_revision"
+        ],
+        "title": "AccessContextResponse"
+      },
+      "AccessContextUser": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "username",
+          "display_name"
+        ],
+        "title": "AccessContextUser"
+      },
+      "AdminCounts": {
+        "properties": {
+          "open_errors": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Open Errors"
+          },
+          "pending_ai_feedback": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Pending Ai Feedback"
+          },
+          "audit_events": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Audit Events"
+          }
+        },
+        "type": "object",
+        "required": [
+          "open_errors",
+          "pending_ai_feedback",
+          "audit_events"
+        ],
+        "title": "AdminCounts"
+      },
+      "AdminDashboardResponse": {
+        "properties": {
+          "viewer": {
+            "$ref": "#/components/schemas/ViewerResponse"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "data_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          },
+          "workspace": {
+            "type": "string",
+            "const": "admin",
+            "title": "Workspace"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/AdminCounts"
+          },
+          "readable_modules": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Readable Modules"
+          },
+          "alerts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Alerts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer",
+          "generated_at",
+          "data_status",
+          "disclaimer",
+          "workspace",
+          "counts",
+          "readable_modules",
+          "alerts"
+        ],
+        "title": "AdminDashboardResponse"
+      },
+      "AiFeedback": {
+        "properties": {
+          "feedback_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Feedback Id"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "run_id": {
+            "type": "string",
+            "title": "Run Id"
+          },
+          "capability_id": {
+            "type": "string",
+            "title": "Capability Id"
+          },
+          "capability_release_id": {
+            "type": "string",
+            "title": "Capability Release Id"
+          },
+          "submitted_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Submitted By"
+          },
+          "feedback_type": {
+            "type": "string",
+            "title": "Feedback Type"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "status": {
+            "$ref": "#/components/schemas/FeedbackStatus"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "feedback_id",
+          "task_id",
+          "run_id",
+          "capability_id",
+          "capability_release_id",
+          "submitted_by",
+          "feedback_type",
+          "summary",
+          "status",
+          "created_at"
+        ],
+        "title": "AiFeedback"
+      },
+      "AiFeedbackListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AiFeedback"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "AiFeedbackListResponse"
+      },
+      "AiTaskListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AiTaskResponse"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "AiTaskListResponse"
+      },
+      "AiTaskResponse": {
+        "properties": {
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Selection Id"
+          },
+          "task_type": {
+            "$ref": "#/components/schemas/AiTaskType"
+          },
+          "input_version": {
+            "type": "string",
+            "title": "Input Version"
+          },
+          "status": {
+            "$ref": "#/components/schemas/AiTaskStatus"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          },
+          "result_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result Version"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "task_id",
+          "selection_id",
+          "task_type",
+          "input_version",
+          "status",
+          "run_id",
+          "result_version",
+          "error_code",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "AiTaskResponse"
+      },
+      "AiTaskStatus": {
+        "type": "string",
+        "enum": [
+          "planned",
+          "queued",
+          "running",
+          "succeeded",
+          "failed",
+          "cancelled"
+        ],
+        "title": "AiTaskStatus"
+      },
+      "AiTaskType": {
+        "type": "string",
+        "enum": [
+          "initial_selection",
+          "profit_review",
+          "listing_draft"
+        ],
+        "title": "AiTaskType"
+      },
+      "AuditLogListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AuditLogResponse"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "AuditLogListResponse"
+      },
+      "AuditLogResponse": {
+        "properties": {
+          "audit_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Audit Id"
+          },
+          "actor_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actor Id"
+          },
+          "actor_roles": {
+            "items": {
+              "$ref": "#/components/schemas/RoleName"
+            },
+            "type": "array",
+            "title": "Actor Roles"
+          },
+          "action": {
+            "type": "string",
+            "title": "Action"
+          },
+          "resource_type": {
+            "type": "string",
+            "title": "Resource Type"
+          },
+          "resource_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resource Id"
+          },
+          "result": {
+            "$ref": "#/components/schemas/AuditResult"
+          },
+          "trace_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Id"
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Occurred At"
+          },
+          "metadata_summary": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Metadata Summary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "audit_id",
+          "actor_id",
+          "actor_roles",
+          "action",
+          "resource_type",
+          "resource_id",
+          "result",
+          "trace_id",
+          "occurred_at",
+          "metadata_summary"
+        ],
+        "title": "AuditLogResponse"
+      },
+      "AuditResult": {
+        "type": "string",
+        "enum": [
+          "success",
+          "denied",
+          "failure"
+        ],
+        "title": "AuditResult"
+      },
+      "CompetitorInput": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "bullets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 5,
+            "title": "Bullets"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title",
+          "bullets"
+        ],
+        "title": "CompetitorInput"
+      },
+      "CompetitorListResponse": {
+        "properties": {
+          "selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Selection Id"
+          },
+          "final_version": {
+            "type": "integer",
+            "title": "Final Version"
+          },
+          "competitors": {
+            "items": {
+              "$ref": "#/components/schemas/CompetitorResponse"
+            },
+            "type": "array",
+            "title": "Competitors"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "selection_id",
+          "final_version",
+          "competitors",
+          "revision"
+        ],
+        "title": "CompetitorListResponse"
+      },
+      "CompetitorResponse": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 1000,
+            "minLength": 1,
+            "title": "Title"
+          },
+          "bullets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 5,
+            "minItems": 5,
+            "title": "Bullets"
+          },
+          "competitor_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Competitor Id"
+          },
+          "position": {
+            "type": "integer",
+            "title": "Position"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "title",
+          "bullets",
+          "competitor_id",
+          "position"
+        ],
+        "title": "CompetitorResponse"
+      },
+      "CompetitorUpsertRequest": {
+        "properties": {
+          "competitors": {
+            "items": {
+              "$ref": "#/components/schemas/CompetitorInput"
+            },
+            "type": "array",
+            "maxItems": 3,
+            "minItems": 3,
+            "title": "Competitors"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "competitors",
+          "expected_revision"
+        ],
+        "title": "CompetitorUpsertRequest"
+      },
+      "CreateStoreRequest": {
+        "properties": {
+          "store_id": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9_-]{2,63}$",
+            "title": "Store Id"
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Display Name"
+          },
+          "marketplace": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Marketplace"
+          },
+          "organization_id": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Organization Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "store_id",
+          "display_name",
+          "marketplace",
+          "organization_id"
+        ],
+        "title": "CreateStoreRequest"
+      },
+      "CreateUserRequest": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9_.-]+$",
+            "title": "Username"
+          },
+          "display_name": {
+            "type": "string",
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Display Name"
+          },
+          "initial_password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 12,
+            "format": "password",
+            "title": "Initial Password",
+            "writeOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "username",
+          "display_name",
+          "initial_password"
+        ],
+        "title": "CreateUserRequest"
+      },
+      "CreativeCounts": {
+        "properties": {
+          "pending_content_tasks": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Pending Content Tasks"
+          },
+          "assets_in_review": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Assets In Review"
+          },
+          "generation_failures": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Generation Failures"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pending_content_tasks",
+          "assets_in_review",
+          "generation_failures"
+        ],
+        "title": "CreativeCounts"
+      },
+      "CreativeDashboardResponse": {
+        "properties": {
+          "viewer": {
+            "$ref": "#/components/schemas/ViewerResponse"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "data_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          },
+          "workspace": {
+            "type": "string",
+            "const": "creative",
+            "title": "Workspace"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/CreativeCounts"
+          },
+          "content_tasks": {
+            "items": {
+              "$ref": "#/components/schemas/WorkspaceRecordResponse"
+            },
+            "type": "array",
+            "title": "Content Tasks"
+          },
+          "alerts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Alerts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer",
+          "generated_at",
+          "data_status",
+          "disclaimer",
+          "workspace",
+          "counts",
+          "content_tasks",
+          "alerts"
+        ],
+        "title": "CreativeDashboardResponse"
+      },
+      "DataScope": {
+        "properties": {
+          "organization_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Organization Ids"
+          },
+          "team_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Team Ids"
+          },
+          "store_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Store Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "DataScope"
+      },
+      "DataStatus": {
+        "type": "string",
+        "enum": [
+          "demo"
+        ],
+        "title": "DataStatus"
+      },
+      "DeepSeekConnectionStatus": {
+        "properties": {
+          "configured": {
+            "type": "boolean",
+            "title": "Configured"
+          },
+          "reachable": {
+            "type": "boolean",
+            "title": "Reachable"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "endpoint_host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Endpoint Host"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "latency_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latency Ms"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "configured",
+          "reachable",
+          "status",
+          "endpoint_host",
+          "model",
+          "latency_ms",
+          "error_code"
+        ],
+        "title": "DeepSeekConnectionStatus"
+      },
+      "ErrorCategory": {
+        "type": "string",
+        "enum": [
+          "system",
+          "api",
+          "worker",
+          "integration",
+          "ai_capability",
+          "external_status_unknown"
+        ],
+        "title": "ErrorCategory"
+      },
+      "ErrorListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/ErrorRecord"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "ErrorListResponse"
+      },
+      "ErrorRecord": {
+        "properties": {
+          "error_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Error Id"
+          },
+          "category": {
+            "$ref": "#/components/schemas/ErrorCategory"
+          },
+          "severity": {
+            "$ref": "#/components/schemas/Severity"
+          },
+          "status": {
+            "$ref": "#/components/schemas/RecordStatus"
+          },
+          "module": {
+            "type": "string",
+            "title": "Module"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          },
+          "action_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action Id"
+          },
+          "summary": {
+            "type": "string",
+            "title": "Summary"
+          },
+          "occurred_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Occurred At"
+          },
+          "resolved_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resolved At"
+          },
+          "trace_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "error_id",
+          "category",
+          "severity",
+          "status",
+          "module",
+          "task_id",
+          "run_id",
+          "action_id",
+          "summary",
+          "occurred_at",
+          "resolved_at",
+          "trace_id"
+        ],
+        "title": "ErrorRecord"
+      },
+      "FeedbackStatus": {
+        "type": "string",
+        "enum": [
+          "new",
+          "reviewing",
+          "accepted",
+          "rejected"
+        ],
+        "title": "FeedbackStatus"
+      },
+      "FinalDecision": {
+        "type": "string",
+        "enum": [
+          "selected",
+          "rejected"
+        ],
+        "title": "FinalDecision"
+      },
+      "FinalSelectionResponse": {
+        "properties": {
+          "final_selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Final Selection Id"
+          },
+          "selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Selection Id"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "profit_review_version": {
+            "type": "integer",
+            "title": "Profit Review Version"
+          },
+          "decision": {
+            "$ref": "#/components/schemas/FinalDecision"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "decided_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Decided By"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "final_selection_id",
+          "selection_id",
+          "version",
+          "profit_review_version",
+          "decision",
+          "reason",
+          "decided_by",
+          "created_at"
+        ],
+        "title": "FinalSelectionResponse"
+      },
+      "FinalSelectionUpsertRequest": {
+        "properties": {
+          "decision": {
+            "$ref": "#/components/schemas/FinalDecision"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "decision",
+          "expected_revision"
+        ],
+        "title": "FinalSelectionUpsertRequest"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "LaunchParameterDefinition": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "value_type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "date",
+              "integer",
+              "enum"
+            ],
+            "title": "Value Type"
+          },
+          "required": {
+            "type": "boolean",
+            "title": "Required"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "allowed_values": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Allowed Values"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "value_type",
+          "required",
+          "description"
+        ],
+        "title": "LaunchParameterDefinition"
+      },
+      "ListingDraftResponse": {
+        "properties": {
+          "listing_draft_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Listing Draft Id"
+          },
+          "selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Selection Id"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "final_version": {
+            "type": "integer",
+            "title": "Final Version"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "bullets": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Bullets"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "listing_draft_id",
+          "selection_id",
+          "version",
+          "final_version",
+          "title",
+          "bullets",
+          "status",
+          "task_id",
+          "run_id",
+          "created_at"
+        ],
+        "title": "ListingDraftResponse"
+      },
+      "LivenessResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "ok",
+            "title": "Status",
+            "default": "ok"
+          }
+        },
+        "type": "object",
+        "title": "LivenessResponse"
+      },
+      "LoginRequest": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "title": "Password",
+            "writeOnly": true
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "LoginRequest"
+      },
+      "ModuleCode": {
+        "type": "string",
+        "enum": [
+          "operations",
+          "procurement",
+          "creative",
+          "admin"
+        ],
+        "title": "ModuleCode"
+      },
+      "ModuleListResponse": {
+        "properties": {
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/ModuleCode"
+            },
+            "type": "array",
+            "title": "Modules"
+          },
+          "default_landing": {
+            "type": "string",
+            "title": "Default Landing"
+          }
+        },
+        "type": "object",
+        "required": [
+          "modules",
+          "default_landing"
+        ],
+        "title": "ModuleListResponse"
+      },
+      "OperationsCounts": {
+        "properties": {
+          "pending_tasks": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Pending Tasks"
+          },
+          "active_projects": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Active Projects"
+          },
+          "exceptions": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Exceptions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pending_tasks",
+          "active_projects",
+          "exceptions"
+        ],
+        "title": "OperationsCounts"
+      },
+      "OperationsDashboardResponse": {
+        "properties": {
+          "viewer": {
+            "$ref": "#/components/schemas/ViewerResponse"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "data_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          },
+          "workspace": {
+            "type": "string",
+            "const": "operations",
+            "title": "Workspace"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/OperationsCounts"
+          },
+          "work_items": {
+            "items": {
+              "$ref": "#/components/schemas/WorkspaceRecordResponse"
+            },
+            "type": "array",
+            "title": "Work Items"
+          },
+          "projects": {
+            "items": {
+              "$ref": "#/components/schemas/WorkspaceRecordResponse"
+            },
+            "type": "array",
+            "title": "Projects"
+          },
+          "alerts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Alerts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer",
+          "generated_at",
+          "data_status",
+          "disclaimer",
+          "workspace",
+          "counts",
+          "work_items",
+          "projects",
+          "alerts"
+        ],
+        "title": "OperationsDashboardResponse"
+      },
+      "Permission": {
+        "type": "string",
+        "enum": [
+          "operations.dashboard.read",
+          "selection.read",
+          "selection.create",
+          "selection.export",
+          "profit_review.read",
+          "final_selection.read",
+          "final_selection.manage",
+          "competitor_reference.manage",
+          "project.read_assigned",
+          "listing_copy.read",
+          "listing_copy.generate",
+          "listing_copy.edit",
+          "listing_copy.review",
+          "listing_copy.history.read",
+          "workflow.read_assigned",
+          "ai_feedback.create_own",
+          "procurement.dashboard.read",
+          "quote.read",
+          "quote.manage",
+          "quotation.export",
+          "purchase_request.read",
+          "purchase_request.manage",
+          "fulfillment.read",
+          "creative.dashboard.read",
+          "content_task.read_assigned",
+          "asset.read",
+          "asset.create",
+          "asset.version.create",
+          "generation.request",
+          "review_comment.read",
+          "admin.dashboard.read",
+          "user.manage",
+          "role.manage",
+          "all_business.read",
+          "task.read_all",
+          "error.read",
+          "ai_feedback.read_all",
+          "audit_log.read",
+          "capability.read",
+          "system_health.read",
+          "store.read",
+          "store.manage"
+        ],
+        "title": "Permission"
+      },
+      "ProcurementCounts": {
+        "properties": {
+          "pending_requests": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Pending Requests"
+          },
+          "open_quotes": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Open Quotes"
+          },
+          "fulfillment_exceptions": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Fulfillment Exceptions"
+          }
+        },
+        "type": "object",
+        "required": [
+          "pending_requests",
+          "open_quotes",
+          "fulfillment_exceptions"
+        ],
+        "title": "ProcurementCounts"
+      },
+      "ProcurementDashboardResponse": {
+        "properties": {
+          "viewer": {
+            "$ref": "#/components/schemas/ViewerResponse"
+          },
+          "generated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Generated At"
+          },
+          "data_status": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "disclaimer": {
+            "type": "string",
+            "title": "Disclaimer"
+          },
+          "workspace": {
+            "type": "string",
+            "const": "procurement",
+            "title": "Workspace"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/ProcurementCounts"
+          },
+          "purchase_requests": {
+            "items": {
+              "$ref": "#/components/schemas/WorkspaceRecordResponse"
+            },
+            "type": "array",
+            "title": "Purchase Requests"
+          },
+          "alerts": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Alerts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "viewer",
+          "generated_at",
+          "data_status",
+          "disclaimer",
+          "workspace",
+          "counts",
+          "purchase_requests",
+          "alerts"
+        ],
+        "title": "ProcurementDashboardResponse"
+      },
+      "ProfitReviewResponse": {
+        "properties": {
+          "profit_review_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Profit Review Id"
+          },
+          "selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Selection Id"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "quotation_version": {
+            "type": "integer",
+            "title": "Quotation Version"
+          },
+          "margin_amount": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Margin Amount"
+          },
+          "margin_rate": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Margin Rate"
+          },
+          "currency": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Currency"
+          },
+          "value_status": {
+            "$ref": "#/components/schemas/ValueStatus"
+          },
+          "recommendation": {
+            "type": "string",
+            "title": "Recommendation"
+          },
+          "explanation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Explanation"
+          },
+          "missing_inputs": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Inputs"
+          },
+          "task_id": {
+            "type": "string",
+            "title": "Task Id"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "profit_review_id",
+          "selection_id",
+          "version",
+          "quotation_version",
+          "margin_amount",
+          "margin_rate",
+          "currency",
+          "value_status",
+          "recommendation",
+          "explanation",
+          "missing_inputs",
+          "task_id",
+          "run_id",
+          "created_at"
+        ],
+        "title": "ProfitReviewResponse"
+      },
+      "QuotationResponse": {
+        "properties": {
+          "quotation_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Quotation Id"
+          },
+          "selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Selection Id"
+          },
+          "version": {
+            "type": "integer",
+            "title": "Version"
+          },
+          "supplier_name": {
+            "type": "string",
+            "title": "Supplier Name"
+          },
+          "unit_cost": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Cost"
+          },
+          "currency": {
+            "type": "string",
+            "title": "Currency"
+          },
+          "value_status": {
+            "$ref": "#/components/schemas/ValueStatus"
+          },
+          "moq": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Moq"
+          },
+          "lead_time_days": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lead Time Days"
+          },
+          "freight_per_unit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freight Per Unit"
+          },
+          "other_cost_per_unit": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Other Cost Per Unit"
+          },
+          "target_price": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Price"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "recorded_by": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Recorded By"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "quotation_id",
+          "selection_id",
+          "version",
+          "supplier_name",
+          "unit_cost",
+          "currency",
+          "value_status",
+          "moq",
+          "lead_time_days",
+          "freight_per_unit",
+          "other_cost_per_unit",
+          "target_price",
+          "notes",
+          "recorded_by",
+          "created_at"
+        ],
+        "title": "QuotationResponse"
+      },
+      "QuotationUpsertRequest": {
+        "properties": {
+          "supplier_name": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 1,
+            "title": "Supplier Name"
+          },
+          "unit_cost": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Cost"
+          },
+          "currency": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 3,
+            "pattern": "^[A-Z]{3}$",
+            "title": "Currency"
+          },
+          "value_status": {
+            "$ref": "#/components/schemas/ValueStatus"
+          },
+          "moq": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Moq"
+          },
+          "lead_time_days": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lead Time Days"
+          },
+          "freight_per_unit": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Freight Per Unit"
+          },
+          "other_cost_per_unit": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Other Cost Per Unit"
+          },
+          "target_price": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "string",
+                "pattern": "^(?!^[-+.]*$)[+-]?0*\\d*\\.?\\d*$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Price"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 2000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "supplier_name",
+          "currency",
+          "value_status",
+          "expected_revision"
+        ],
+        "title": "QuotationUpsertRequest"
+      },
+      "ReadinessResponse": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "unhealthy"
+            ],
+            "title": "Status"
+          },
+          "checks": {
+            "additionalProperties": {
+              "type": "string",
+              "enum": [
+                "up",
+                "down"
+              ]
+            },
+            "type": "object",
+            "title": "Checks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status",
+          "checks"
+        ],
+        "title": "ReadinessResponse"
+      },
+      "RecordStatus": {
+        "type": "string",
+        "enum": [
+          "open",
+          "acknowledged",
+          "resolved"
+        ],
+        "title": "RecordStatus"
+      },
+      "RoleName": {
+        "type": "string",
+        "enum": [
+          "operations",
+          "procurement",
+          "creative",
+          "admin"
+        ],
+        "title": "RoleName"
+      },
+      "SelectionExportCreateRequest": {
+        "properties": {
+          "stage": {
+            "$ref": "#/components/schemas/SelectionExportStage"
+          },
+          "store_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 100,
+            "title": "Store Ids"
+          },
+          "search": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Search"
+          },
+          "marketplace": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Marketplace"
+          },
+          "source_type": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 40
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Type"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "stage"
+        ],
+        "title": "SelectionExportCreateRequest"
+      },
+      "SelectionExportResponse": {
+        "properties": {
+          "export_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Export Id"
+          },
+          "stage": {
+            "$ref": "#/components/schemas/SelectionExportStage"
+          },
+          "snapshot_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Snapshot Id"
+          },
+          "schema_version": {
+            "type": "string",
+            "title": "Schema Version"
+          },
+          "status": {
+            "$ref": "#/components/schemas/SelectionExportStatus"
+          },
+          "row_count": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Row Count"
+          },
+          "file_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File Name"
+          },
+          "file_checksum": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File Checksum"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "trace_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trace Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "completed_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Completed At"
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Expires At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "export_id",
+          "stage",
+          "snapshot_id",
+          "schema_version",
+          "status",
+          "row_count",
+          "file_name",
+          "file_checksum",
+          "error_code",
+          "trace_id",
+          "created_at",
+          "completed_at",
+          "expires_at"
+        ],
+        "title": "SelectionExportResponse"
+      },
+      "SelectionExportStage": {
+        "type": "string",
+        "enum": [
+          "initial_selection",
+          "quotation"
+        ],
+        "title": "SelectionExportStage"
+      },
+      "SelectionExportStatus": {
+        "type": "string",
+        "enum": [
+          "queued",
+          "running",
+          "completed",
+          "failed"
+        ],
+        "title": "SelectionExportStatus"
+      },
+      "SelectionListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SelectionRecordResponse"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "SelectionListResponse"
+      },
+      "SelectionRecordResponse": {
+        "properties": {
+          "selection_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Selection Id"
+          },
+          "store_id": {
+            "type": "string",
+            "title": "Store Id"
+          },
+          "marketplace": {
+            "type": "string",
+            "title": "Marketplace"
+          },
+          "product_name": {
+            "type": "string",
+            "title": "Product Name"
+          },
+          "source_type": {
+            "type": "string",
+            "title": "Source Type"
+          },
+          "source_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Ref"
+          },
+          "source_snapshot_ref": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source Snapshot Ref"
+          },
+          "source_version": {
+            "type": "string",
+            "title": "Source Version"
+          },
+          "owner_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "uuid"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Owner Id"
+          },
+          "stage": {
+            "$ref": "#/components/schemas/SelectionStage"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "selection_id",
+          "store_id",
+          "marketplace",
+          "product_name",
+          "source_type",
+          "source_ref",
+          "source_snapshot_ref",
+          "source_version",
+          "owner_id",
+          "stage",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "SelectionRecordResponse"
+      },
+      "SelectionSkillCard": {
+        "properties": {
+          "skill_key": {
+            "type": "string",
+            "title": "Skill Key"
+          },
+          "package_name": {
+            "type": "string",
+            "title": "Package Name"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "bundle_version": {
+            "type": "string",
+            "title": "Bundle Version"
+          },
+          "skill_file_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Skill File Sha256"
+          },
+          "input_schema_version": {
+            "type": "string",
+            "title": "Input Schema Version"
+          },
+          "output_schema_version": {
+            "type": "string",
+            "title": "Output Schema Version"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "supports_new_product_discovery": {
+            "type": "boolean",
+            "title": "Supports New Product Discovery"
+          },
+          "requires_base_product": {
+            "type": "boolean",
+            "title": "Requires Base Product"
+          },
+          "supported_sites": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "GB",
+                "DE",
+                "JP",
+                "CA"
+              ]
+            },
+            "type": "array",
+            "title": "Supported Sites"
+          },
+          "execution_status": {
+            "$ref": "#/components/schemas/SkillExecutionStatus"
+          },
+          "modes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Modes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "skill_key",
+          "package_name",
+          "display_name",
+          "description",
+          "bundle_version",
+          "skill_file_sha256",
+          "input_schema_version",
+          "output_schema_version",
+          "enabled",
+          "supports_new_product_discovery",
+          "requires_base_product",
+          "supported_sites",
+          "execution_status",
+          "modes"
+        ],
+        "title": "SelectionSkillCard"
+      },
+      "SelectionSkillDetail": {
+        "properties": {
+          "skill_key": {
+            "type": "string",
+            "title": "Skill Key"
+          },
+          "package_name": {
+            "type": "string",
+            "title": "Package Name"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          },
+          "bundle_version": {
+            "type": "string",
+            "title": "Bundle Version"
+          },
+          "skill_file_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Skill File Sha256"
+          },
+          "input_schema_version": {
+            "type": "string",
+            "title": "Input Schema Version"
+          },
+          "output_schema_version": {
+            "type": "string",
+            "title": "Output Schema Version"
+          },
+          "enabled": {
+            "type": "boolean",
+            "title": "Enabled"
+          },
+          "supports_new_product_discovery": {
+            "type": "boolean",
+            "title": "Supports New Product Discovery"
+          },
+          "requires_base_product": {
+            "type": "boolean",
+            "title": "Requires Base Product"
+          },
+          "supported_sites": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "GB",
+                "DE",
+                "JP",
+                "CA"
+              ]
+            },
+            "type": "array",
+            "title": "Supported Sites"
+          },
+          "execution_status": {
+            "$ref": "#/components/schemas/SkillExecutionStatus"
+          },
+          "modes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Modes"
+          },
+          "launch_parameters": {
+            "items": {
+              "$ref": "#/components/schemas/LaunchParameterDefinition"
+            },
+            "type": "array",
+            "title": "Launch Parameters"
+          },
+          "shared_dependency_files": {
+            "items": {
+              "$ref": "#/components/schemas/SkillDependency"
+            },
+            "type": "array",
+            "title": "Shared Dependency Files"
+          },
+          "rule_versions": {
+            "items": {
+              "$ref": "#/components/schemas/SkillRuleVersion"
+            },
+            "type": "array",
+            "title": "Rule Versions"
+          },
+          "output_schema": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Output Schema"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "skill_key",
+          "package_name",
+          "display_name",
+          "description",
+          "bundle_version",
+          "skill_file_sha256",
+          "input_schema_version",
+          "output_schema_version",
+          "enabled",
+          "supports_new_product_discovery",
+          "requires_base_product",
+          "supported_sites",
+          "execution_status",
+          "modes",
+          "launch_parameters",
+          "shared_dependency_files",
+          "rule_versions",
+          "output_schema"
+        ],
+        "title": "SelectionSkillDetail"
+      },
+      "SelectionSkillListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SelectionSkillCard"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "SelectionSkillListResponse"
+      },
+      "SelectionStage": {
+        "type": "string",
+        "enum": [
+          "sourced",
+          "quoted",
+          "profit_reviewed",
+          "final_selected",
+          "final_rejected"
+        ],
+        "title": "SelectionStage"
+      },
+      "Severity": {
+        "type": "string",
+        "enum": [
+          "info",
+          "warning",
+          "error",
+          "critical"
+        ],
+        "title": "Severity"
+      },
+      "SkillDependency": {
+        "properties": {
+          "file_name": {
+            "type": "string",
+            "title": "File Name"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Sha256"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "file_name",
+          "sha256"
+        ],
+        "title": "SkillDependency"
+      },
+      "SkillExecutionStatus": {
+        "type": "string",
+        "enum": [
+          "registered_not_executable"
+        ],
+        "title": "SkillExecutionStatus"
+      },
+      "SkillRuleVersion": {
+        "properties": {
+          "rule_key": {
+            "type": "string",
+            "title": "Rule Key"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "title": "Sha256"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "rule_key",
+          "version",
+          "sha256"
+        ],
+        "title": "SkillRuleVersion"
+      },
+      "StoreListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/StoreResponse"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "StoreListResponse"
+      },
+      "StoreResponse": {
+        "properties": {
+          "store_id": {
+            "type": "string",
+            "title": "Store Id"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "marketplace": {
+            "type": "string",
+            "title": "Marketplace"
+          },
+          "organization_id": {
+            "type": "string",
+            "title": "Organization Id"
+          },
+          "status": {
+            "$ref": "#/components/schemas/StoreStatus"
+          },
+          "credential_configured": {
+            "type": "boolean",
+            "title": "Credential Configured"
+          },
+          "revision": {
+            "type": "integer",
+            "title": "Revision"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "store_id",
+          "display_name",
+          "marketplace",
+          "organization_id",
+          "status",
+          "credential_configured",
+          "revision",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "StoreResponse"
+      },
+      "StoreStatus": {
+        "type": "string",
+        "enum": [
+          "active",
+          "inactive"
+        ],
+        "title": "StoreStatus"
+      },
+      "SystemInfoResponse": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "version": {
+            "type": "string",
+            "title": "Version"
+          },
+          "environment": {
+            "type": "string",
+            "title": "Environment"
+          },
+          "api_version": {
+            "type": "string",
+            "title": "Api Version",
+            "default": "v1"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "version",
+          "environment"
+        ],
+        "title": "SystemInfoResponse"
+      },
+      "UpdateModulesRequest": {
+        "properties": {
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/ModuleCode"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Modules"
+          },
+          "expected_authorization_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Authorization Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "modules",
+          "expected_authorization_revision"
+        ],
+        "title": "UpdateModulesRequest"
+      },
+      "UpdateRolesRequest": {
+        "properties": {
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/RoleName"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Roles"
+          },
+          "permissions": {
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Permissions"
+          },
+          "expected_authorization_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Authorization Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "roles",
+          "expected_authorization_revision"
+        ],
+        "title": "UpdateRolesRequest"
+      },
+      "UpdateStoreRequest": {
+        "properties": {
+          "display_name": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 160,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Name"
+          },
+          "marketplace": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 80,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Marketplace"
+          },
+          "organization_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 120,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Organization Id"
+          },
+          "status": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/StoreStatus"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_revision"
+        ],
+        "title": "UpdateStoreRequest"
+      },
+      "UpdateStoreScopesRequest": {
+        "properties": {
+          "store_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true,
+            "title": "Store Ids"
+          },
+          "expected_authorization_revision": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Authorization Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "store_ids",
+          "expected_authorization_revision"
+        ],
+        "title": "UpdateStoreScopesRequest"
+      },
+      "UserAccessListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/UserAccessResponse"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "UserAccessListResponse"
+      },
+      "UserAccessResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "is_active": {
+            "type": "boolean",
+            "title": "Is Active"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/RoleName"
+            },
+            "type": "array",
+            "title": "Roles"
+          },
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/ModuleCode"
+            },
+            "type": "array",
+            "title": "Modules"
+          },
+          "direct_permissions": {
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            },
+            "type": "array",
+            "title": "Direct Permissions"
+          },
+          "effective_permissions": {
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            },
+            "type": "array",
+            "title": "Effective Permissions"
+          },
+          "scopes": {
+            "$ref": "#/components/schemas/DataScope"
+          },
+          "authorization_revision": {
+            "type": "integer",
+            "title": "Authorization Revision"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "user_id",
+          "username",
+          "display_name",
+          "is_active",
+          "roles",
+          "modules",
+          "direct_permissions",
+          "effective_permissions",
+          "scopes",
+          "authorization_revision"
+        ],
+        "title": "UserAccessResponse"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "ValueStatus": {
+        "type": "string",
+        "enum": [
+          "missing",
+          "zero",
+          "estimated",
+          "failed",
+          "unavailable",
+          "confirmed"
+        ],
+        "title": "ValueStatus"
+      },
+      "ViewerResponse": {
+        "properties": {
+          "user_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "User Id"
+          },
+          "username": {
+            "type": "string",
+            "title": "Username"
+          },
+          "display_name": {
+            "type": "string",
+            "title": "Display Name"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/RoleName"
+            },
+            "type": "array",
+            "title": "Roles"
+          },
+          "modules": {
+            "items": {
+              "$ref": "#/components/schemas/ModuleCode"
+            },
+            "type": "array",
+            "title": "Modules"
+          },
+          "permissions": {
+            "items": {
+              "$ref": "#/components/schemas/Permission"
+            },
+            "type": "array",
+            "title": "Permissions"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/DataScope"
+          },
+          "authorization_revision": {
+            "type": "integer",
+            "title": "Authorization Revision"
+          }
+        },
+        "type": "object",
+        "required": [
+          "user_id",
+          "username",
+          "display_name",
+          "roles",
+          "modules",
+          "permissions",
+          "scope",
+          "authorization_revision"
+        ],
+        "title": "ViewerResponse"
+      },
+      "WorkspaceRecordListResponse": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/WorkspaceRecordResponse"
+            },
+            "type": "array",
+            "title": "Items"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total"
+        ],
+        "title": "WorkspaceRecordListResponse"
+      },
+      "WorkspaceRecordResponse": {
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "format": "uuid",
+            "title": "Record Id"
+          },
+          "store_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Store Id"
+          },
+          "record_type": {
+            "type": "string",
+            "title": "Record Type"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          },
+          "summary": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Summary"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "record_id",
+          "store_id",
+          "record_type",
+          "title",
+          "status",
+          "updated_at",
+          "summary"
+        ],
+        "title": "WorkspaceRecordResponse"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "ai_ops_session"
+      }
+    }
+  }
+}

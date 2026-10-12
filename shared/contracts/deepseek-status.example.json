@@ -1,0 +1,9 @@
+{
+  "configured": true,
+  "reachable": true,
+  "status": "available",
+  "endpoint_host": "api.deepseek.com",
+  "model": "deepseek-chat",
+  "latency_ms": 120,
+  "error_code": null
+}

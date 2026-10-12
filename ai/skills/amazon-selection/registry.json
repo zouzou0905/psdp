@@ -1,0 +1,1092 @@
+{
+  "registry_schema_version": "selection-skill-registry.v1",
+  "bundle_version": "2026-10-09",
+  "bundle_sha256": "864c271c3ebd5830f99016f2ee03725dd395040f2e342d354e63471c35140351",
+  "source_file_count": 38,
+  "skills": [
+    {
+      "skill_key": "evergreen",
+      "package_name": "select-sorftime-amazon-evergreen",
+      "display_name": "日常微蓝海选品",
+      "description": "Discover and validate Amazon GB, DE, JP, or CA FBA private-label evergreen opportunities with Sorftime. Use for 日常品、常年款、全年稳定需求、非季节选品, or when evaluating whether a keyword, ASIN, category, or candidate list has at least ten effective demand months, low-review organic entrants, low competition, complete profit, and acceptable risk. Reclassify repeatable seasonal, holiday, or short-lived trend demand instead of forcing an evergreen result.",
+      "bundle_version": "2026-10-09",
+      "skill_source_path": "skills/select-sorftime-amazon-evergreen/SKILL.md",
+      "skill_file_sha256": "ac1026407d5773d70f13e34b80a515159a10db1b48f88af9f57096f2adea5027",
+      "shared_dependency_files": [
+        {
+          "path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/referral-fees.md",
+          "sha256": "ed1d9567830539b4340d958ef6cd5e5c323eac4020cb1f7c489011001081a28c"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees.md",
+          "sha256": "ad7ca432818213076084c201fc803f6a067013c5caec64e301185a8a089d7db1"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/human-review-memory-2026-09-04.json",
+          "sha256": "f1c02aa53aad095084793407469375e4a54c1d7e7122559e7fd7cbc00f254fda"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/selection-runtime.mjs",
+          "sha256": "adaebc339250095bfd906fba7fc694cd023ab625985868ae25c026da1bb15786"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/state.schema.json",
+          "sha256": "9f72ec929574165edc5db610a01d366559c1a5023e48b5a846752a028720556d"
+        },
+        {
+          "path": "skills/select-sorftime-amazon-evergreen/references/type-rules.md",
+          "sha256": "18eea69fbb07fdfd60a0337cccbdb2e75543d10ec1093c5678128a046bd432dc"
+        }
+      ],
+      "rule_versions": [
+        {
+          "rule_key": "six-agent-control",
+          "version": "six-agent-control-v1.14.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-gates",
+          "version": "selection-gates-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "rule_key": "market-entry",
+          "version": "market-entry-v0.6.0",
+          "source_path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "rule_key": "candidate-profit-workflow",
+          "version": "candidate-profit-workflow-v1.9.0",
+          "source_path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "rule_key": "batch-review-handoff",
+          "version": "batch-review-handoff-v2.0.0",
+          "source_path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "rule_key": "selection-execution",
+          "version": "selection-execution-v1.2.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-run-control",
+          "version": "selection-run-control-v1.1.0",
+          "source_path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "rule_key": "air-small-batch-window",
+          "version": "air-small-batch-window-v1.0.0",
+          "source_path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "rule_key": "fba-fee-snapshot",
+          "version": "fba-fees-2026-09-21",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "rule_key": "fba-peak-fee-snapshot",
+          "version": "fba-fees-peak-2026-09-16",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "rule_key": "commission-policy",
+          "version": "selection-fee-policy-2026-09-17",
+          "source_path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "rule_key": "selection-memory",
+          "version": "selection-memory-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "rule_key": "evergreen-type-rules",
+          "version": "evergreen-demand-v0.7.0",
+          "source_path": "skills/select-sorftime-amazon-evergreen/references/type-rules.md",
+          "sha256": "18eea69fbb07fdfd60a0337cccbdb2e75543d10ec1093c5678128a046bd432dc"
+        }
+      ],
+      "input_schema_version": "selection-skill-launch.v1",
+      "output_schema_version": "selection-candidate.evergreen.v1",
+      "enabled": true,
+      "supports_new_product_discovery": true,
+      "requires_base_product": false,
+      "supported_sites": [
+        "GB",
+        "DE",
+        "JP",
+        "CA"
+      ],
+      "execution_status": "registered_not_executable",
+      "modes": [
+        "independent_discovery"
+      ],
+      "launch_parameters": [
+        "site",
+        "seed",
+        "analysis_date",
+        "depth"
+      ]
+    },
+    {
+      "skill_key": "seasonal",
+      "package_name": "select-sorftime-amazon-seasonal",
+      "display_name": "季节窗口品选品",
+      "description": "Discover and validate Amazon GB, DE, JP, or CA FBA private-label seasonal opportunities with Sorftime. Use for 季节品、春夏秋冬产品、气候相关商品、周期旺季、季节备货, or when evaluating whether a keyword, ASIN, category, or candidate list has a repeatable four-to-nine-month demand window and enough time to reach FBA. Do not treat holiday-name demand or one-off viral spikes as seasonal evidence.",
+      "bundle_version": "2026-10-09",
+      "skill_source_path": "skills/select-sorftime-amazon-seasonal/SKILL.md",
+      "skill_file_sha256": "a6b9e4fb5f3d007f98eb7152f2d2370c35e60f2fd43213d59a95aff7c66215f2",
+      "shared_dependency_files": [
+        {
+          "path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/referral-fees.md",
+          "sha256": "ed1d9567830539b4340d958ef6cd5e5c323eac4020cb1f7c489011001081a28c"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees.md",
+          "sha256": "ad7ca432818213076084c201fc803f6a067013c5caec64e301185a8a089d7db1"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/human-review-memory-2026-09-04.json",
+          "sha256": "f1c02aa53aad095084793407469375e4a54c1d7e7122559e7fd7cbc00f254fda"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/selection-runtime.mjs",
+          "sha256": "adaebc339250095bfd906fba7fc694cd023ab625985868ae25c026da1bb15786"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/state.schema.json",
+          "sha256": "9f72ec929574165edc5db610a01d366559c1a5023e48b5a846752a028720556d"
+        },
+        {
+          "path": "skills/select-sorftime-amazon-seasonal/references/type-rules.md",
+          "sha256": "dc1ef57012954857cce877e328dd353dba3aaf726dd53dca67edc6063d9344e8"
+        }
+      ],
+      "rule_versions": [
+        {
+          "rule_key": "six-agent-control",
+          "version": "six-agent-control-v1.14.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-gates",
+          "version": "selection-gates-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "rule_key": "market-entry",
+          "version": "market-entry-v0.6.0",
+          "source_path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "rule_key": "candidate-profit-workflow",
+          "version": "candidate-profit-workflow-v1.9.0",
+          "source_path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "rule_key": "batch-review-handoff",
+          "version": "batch-review-handoff-v2.0.0",
+          "source_path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "rule_key": "selection-execution",
+          "version": "selection-execution-v1.2.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-run-control",
+          "version": "selection-run-control-v1.1.0",
+          "source_path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "rule_key": "air-small-batch-window",
+          "version": "air-small-batch-window-v1.0.0",
+          "source_path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "rule_key": "fba-fee-snapshot",
+          "version": "fba-fees-2026-09-21",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "rule_key": "fba-peak-fee-snapshot",
+          "version": "fba-fees-peak-2026-09-16",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "rule_key": "commission-policy",
+          "version": "selection-fee-policy-2026-09-17",
+          "source_path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "rule_key": "selection-memory",
+          "version": "selection-memory-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "rule_key": "seasonal-type-rules",
+          "version": "seasonal-window-v0.5.0",
+          "source_path": "skills/select-sorftime-amazon-seasonal/references/type-rules.md",
+          "sha256": "dc1ef57012954857cce877e328dd353dba3aaf726dd53dca67edc6063d9344e8"
+        }
+      ],
+      "input_schema_version": "selection-skill-launch.v1",
+      "output_schema_version": "selection-candidate.seasonal.v1",
+      "enabled": true,
+      "supports_new_product_discovery": true,
+      "requires_base_product": false,
+      "supported_sites": [
+        "GB",
+        "DE",
+        "JP",
+        "CA"
+      ],
+      "execution_status": "registered_not_executable",
+      "modes": [
+        "independent_discovery"
+      ],
+      "launch_parameters": [
+        "site",
+        "seed",
+        "analysis_date",
+        "target_window",
+        "depth"
+      ]
+    },
+    {
+      "skill_key": "holiday",
+      "package_name": "select-sorftime-amazon-holiday",
+      "display_name": "节日事件品选品",
+      "description": "Discover and validate Amazon GB, DE, JP, or CA FBA private-label holiday and event-driven opportunities with Sorftime. Use for 节日品、节庆定制、圣诞、万圣节、情人节、复活节、母亲节、父亲节、感恩节, or when evaluating genuine event intent, repeatable event-relative demand, short/medium/long shopping windows, too-early or too-late development timing, customization, IP risk, and an inventory exit plan. Reject name-only holiday labels and one-off viral spikes.",
+      "bundle_version": "2026-10-09",
+      "skill_source_path": "skills/select-sorftime-amazon-holiday/SKILL.md",
+      "skill_file_sha256": "bb4f9cb979a53921bdc410ff96efeeadc21db04b965a3f463c595dd541073073",
+      "shared_dependency_files": [
+        {
+          "path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/referral-fees.md",
+          "sha256": "ed1d9567830539b4340d958ef6cd5e5c323eac4020cb1f7c489011001081a28c"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees.md",
+          "sha256": "ad7ca432818213076084c201fc803f6a067013c5caec64e301185a8a089d7db1"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/human-review-memory-2026-09-04.json",
+          "sha256": "f1c02aa53aad095084793407469375e4a54c1d7e7122559e7fd7cbc00f254fda"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/selection-runtime.mjs",
+          "sha256": "adaebc339250095bfd906fba7fc694cd023ab625985868ae25c026da1bb15786"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/state.schema.json",
+          "sha256": "9f72ec929574165edc5db610a01d366559c1a5023e48b5a846752a028720556d"
+        },
+        {
+          "path": "skills/select-sorftime-amazon-holiday/references/type-rules.md",
+          "sha256": "d75bb78f91627b1514eae582f66c03ecfe96d2662c847df71dfbc04566525a95"
+        }
+      ],
+      "rule_versions": [
+        {
+          "rule_key": "six-agent-control",
+          "version": "six-agent-control-v1.14.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-gates",
+          "version": "selection-gates-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "rule_key": "market-entry",
+          "version": "market-entry-v0.6.0",
+          "source_path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "rule_key": "candidate-profit-workflow",
+          "version": "candidate-profit-workflow-v1.9.0",
+          "source_path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "rule_key": "batch-review-handoff",
+          "version": "batch-review-handoff-v2.0.0",
+          "source_path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "rule_key": "selection-execution",
+          "version": "selection-execution-v1.2.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-run-control",
+          "version": "selection-run-control-v1.1.0",
+          "source_path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "rule_key": "air-small-batch-window",
+          "version": "air-small-batch-window-v1.0.0",
+          "source_path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "rule_key": "fba-fee-snapshot",
+          "version": "fba-fees-2026-09-21",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "rule_key": "fba-peak-fee-snapshot",
+          "version": "fba-fees-peak-2026-09-16",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "rule_key": "commission-policy",
+          "version": "selection-fee-policy-2026-09-17",
+          "source_path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "rule_key": "selection-memory",
+          "version": "selection-memory-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "rule_key": "holiday-type-rules",
+          "version": "holiday-window-v0.7.0",
+          "source_path": "skills/select-sorftime-amazon-holiday/references/type-rules.md",
+          "sha256": "d75bb78f91627b1514eae582f66c03ecfe96d2662c847df71dfbc04566525a95"
+        }
+      ],
+      "input_schema_version": "selection-skill-launch.v1",
+      "output_schema_version": "selection-candidate.holiday.v1",
+      "enabled": true,
+      "supports_new_product_discovery": true,
+      "requires_base_product": false,
+      "supported_sites": [
+        "GB",
+        "DE",
+        "JP",
+        "CA"
+      ],
+      "execution_status": "registered_not_executable",
+      "modes": [
+        "independent_discovery"
+      ],
+      "launch_parameters": [
+        "site",
+        "seed",
+        "event_name",
+        "target_year",
+        "depth"
+      ]
+    },
+    {
+      "skill_key": "trending_accessories",
+      "package_name": "select-sorftime-amazon-trending-accessories",
+      "display_name": "热点母体衍生配件选品",
+      "description": "Discover and validate Amazon GB, DE, JP, or CA third-party accessory opportunities caused by a newly popular or rapidly rising main product, product line, model, or installed base with Sorftime. Use for 热门产品配件、品牌或型号兼容配件、开放式售后生态、爆款配件、流量暴涨配件、近期趋势配件. Cover both universal and lawful open-aftermarket accessories; reject one-week, promotion-only, logo-copying, protected-design, proprietary-protocol, authorization-only, or otherwise closed-ecosystem opportunities.",
+      "bundle_version": "2026-10-09",
+      "skill_source_path": "skills/select-sorftime-amazon-trending-accessories/SKILL.md",
+      "skill_file_sha256": "55af761ccf5917c04710859b1a3ac66f2ae013b82138e464a6fa9ff699d8d7ad",
+      "shared_dependency_files": [
+        {
+          "path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/referral-fees.md",
+          "sha256": "ed1d9567830539b4340d958ef6cd5e5c323eac4020cb1f7c489011001081a28c"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees.md",
+          "sha256": "ad7ca432818213076084c201fc803f6a067013c5caec64e301185a8a089d7db1"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/human-review-memory-2026-09-04.json",
+          "sha256": "f1c02aa53aad095084793407469375e4a54c1d7e7122559e7fd7cbc00f254fda"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/selection-runtime.mjs",
+          "sha256": "adaebc339250095bfd906fba7fc694cd023ab625985868ae25c026da1bb15786"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/state.schema.json",
+          "sha256": "9f72ec929574165edc5db610a01d366559c1a5023e48b5a846752a028720556d"
+        },
+        {
+          "path": "skills/select-sorftime-amazon-trending-accessories/references/type-rules.md",
+          "sha256": "25dc5cccb53cdbcc13208f32f709b07790bbd4bc43cc37177729f745ebcb3df1"
+        }
+      ],
+      "rule_versions": [
+        {
+          "rule_key": "six-agent-control",
+          "version": "six-agent-control-v1.14.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-gates",
+          "version": "selection-gates-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "rule_key": "market-entry",
+          "version": "market-entry-v0.6.0",
+          "source_path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "rule_key": "candidate-profit-workflow",
+          "version": "candidate-profit-workflow-v1.9.0",
+          "source_path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "rule_key": "batch-review-handoff",
+          "version": "batch-review-handoff-v2.0.0",
+          "source_path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "rule_key": "selection-execution",
+          "version": "selection-execution-v1.2.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-run-control",
+          "version": "selection-run-control-v1.1.0",
+          "source_path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "rule_key": "air-small-batch-window",
+          "version": "air-small-batch-window-v1.0.0",
+          "source_path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "rule_key": "fba-fee-snapshot",
+          "version": "fba-fees-2026-09-21",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "rule_key": "fba-peak-fee-snapshot",
+          "version": "fba-fees-peak-2026-09-16",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "rule_key": "commission-policy",
+          "version": "selection-fee-policy-2026-09-17",
+          "source_path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "rule_key": "selection-memory",
+          "version": "selection-memory-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "rule_key": "trending_accessories-type-rules",
+          "version": "hot-accessory-v1.0.0",
+          "source_path": "skills/select-sorftime-amazon-trending-accessories/references/type-rules.md",
+          "sha256": "25dc5cccb53cdbcc13208f32f709b07790bbd4bc43cc37177729f745ebcb3df1"
+        }
+      ],
+      "input_schema_version": "selection-skill-launch.v1",
+      "output_schema_version": "selection-candidate.trending_accessories.v1",
+      "enabled": true,
+      "supports_new_product_discovery": true,
+      "requires_base_product": false,
+      "supported_sites": [
+        "GB",
+        "DE",
+        "JP",
+        "CA"
+      ],
+      "execution_status": "registered_not_executable",
+      "modes": [
+        "independent_discovery"
+      ],
+      "launch_parameters": [
+        "site",
+        "main_product_seed",
+        "accessory_clue",
+        "analysis_date"
+      ]
+    },
+    {
+      "skill_key": "consumables_multipacks",
+      "package_name": "select-sorftime-amazon-consumables-multipacks",
+      "display_name": "消耗品与包装规格选品",
+      "description": "Independently discover and validate Amazon GB, DE, JP, or CA FBA private-label opportunities for replenishable consumables and demand-backed pack sizes from small packs through high-piece-count offers with Sorftime, or review those attributes for an existing candidate. Use for 消耗品、一次性用品、多件装、小包装、大PCS、补充装、替换装、耗材、复购周期、包装规格、单位价值. Preserve and validate the evergreen, seasonal, holiday, or trending primary demand type before final launch approval.",
+      "bundle_version": "2026-10-09",
+      "skill_source_path": "skills/select-sorftime-amazon-consumables-multipacks/SKILL.md",
+      "skill_file_sha256": "2f2f792a13158761fe225618ba385887239662eb97b686ce149ef479300847c9",
+      "shared_dependency_files": [
+        {
+          "path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/referral-fees.md",
+          "sha256": "ed1d9567830539b4340d958ef6cd5e5c323eac4020cb1f7c489011001081a28c"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees.md",
+          "sha256": "ad7ca432818213076084c201fc803f6a067013c5caec64e301185a8a089d7db1"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/human-review-memory-2026-09-04.json",
+          "sha256": "f1c02aa53aad095084793407469375e4a54c1d7e7122559e7fd7cbc00f254fda"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/selection-runtime.mjs",
+          "sha256": "adaebc339250095bfd906fba7fc694cd023ab625985868ae25c026da1bb15786"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/state.schema.json",
+          "sha256": "9f72ec929574165edc5db610a01d366559c1a5023e48b5a846752a028720556d"
+        },
+        {
+          "path": "skills/select-sorftime-amazon-consumables-multipacks/references/type-rules.md",
+          "sha256": "fa58bcb1b62e851e56a04ecd06d3b928cd6a773f30b2037285603c7b1a652eae"
+        }
+      ],
+      "rule_versions": [
+        {
+          "rule_key": "six-agent-control",
+          "version": "six-agent-control-v1.14.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-gates",
+          "version": "selection-gates-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "rule_key": "market-entry",
+          "version": "market-entry-v0.6.0",
+          "source_path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "rule_key": "candidate-profit-workflow",
+          "version": "candidate-profit-workflow-v1.9.0",
+          "source_path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "rule_key": "batch-review-handoff",
+          "version": "batch-review-handoff-v2.0.0",
+          "source_path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "rule_key": "selection-execution",
+          "version": "selection-execution-v1.2.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-run-control",
+          "version": "selection-run-control-v1.1.0",
+          "source_path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "rule_key": "air-small-batch-window",
+          "version": "air-small-batch-window-v1.0.0",
+          "source_path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "rule_key": "fba-fee-snapshot",
+          "version": "fba-fees-2026-09-21",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "rule_key": "fba-peak-fee-snapshot",
+          "version": "fba-fees-peak-2026-09-16",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "rule_key": "commission-policy",
+          "version": "selection-fee-policy-2026-09-17",
+          "source_path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "rule_key": "selection-memory",
+          "version": "selection-memory-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "rule_key": "consumables_multipacks-type-rules",
+          "version": "consumables-packs-v0.5.0",
+          "source_path": "skills/select-sorftime-amazon-consumables-multipacks/references/type-rules.md",
+          "sha256": "fa58bcb1b62e851e56a04ecd06d3b928cd6a773f30b2037285603c7b1a652eae"
+        }
+      ],
+      "input_schema_version": "selection-skill-launch.v1",
+      "output_schema_version": "selection-candidate.consumables_multipacks.v1",
+      "enabled": true,
+      "supports_new_product_discovery": true,
+      "requires_base_product": false,
+      "supported_sites": [
+        "GB",
+        "DE",
+        "JP",
+        "CA"
+      ],
+      "execution_status": "registered_not_executable",
+      "modes": [
+        "independent_discovery",
+        "tag_review"
+      ],
+      "launch_parameters": [
+        "site",
+        "seed",
+        "selection_mode",
+        "branch_mode",
+        "pack_scope"
+      ]
+    },
+    {
+      "skill_key": "validated_variations",
+      "package_name": "select-sorftime-amazon-validated-variations",
+      "display_name": "已验证产品扩展",
+      "description": "Validate lawful, demand-backed light variations, bundles, packaging changes, UV prints, and laser-mark extensions for already validated Amazon GB, DE, JP, or CA FBA private-label products with Sorftime. Use when the user asks to expand an existing product by color, pattern, size, pack quantity, model fitment, functional combination, packaging, UV, laser, or a small variation matrix. Choose the correct route under Amazon's 2026 review-sharing rules and require every target child or standalone offer to independently pass demand, profit, sourcing, weight, natural-traffic, compliance, and IP gates. Do not use for an unvalidated net-new product.",
+      "bundle_version": "2026-10-09",
+      "skill_source_path": "skills/select-sorftime-amazon-validated-variations/SKILL.md",
+      "skill_file_sha256": "7a9c44fc1cca892544877aba9e06b6ab79751040facdf337b476c7fc07b3df25",
+      "shared_dependency_files": [
+        {
+          "path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/referral-fees.md",
+          "sha256": "ed1d9567830539b4340d958ef6cd5e5c323eac4020cb1f7c489011001081a28c"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees.md",
+          "sha256": "ad7ca432818213076084c201fc803f6a067013c5caec64e301185a8a089d7db1"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/human-review-memory-2026-09-04.json",
+          "sha256": "f1c02aa53aad095084793407469375e4a54c1d7e7122559e7fd7cbc00f254fda"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/selection-runtime.mjs",
+          "sha256": "adaebc339250095bfd906fba7fc694cd023ab625985868ae25c026da1bb15786"
+        },
+        {
+          "path": "skills/_amazon-selection-shared/scripts/state.schema.json",
+          "sha256": "9f72ec929574165edc5db610a01d366559c1a5023e48b5a846752a028720556d"
+        },
+        {
+          "path": "skills/select-sorftime-amazon-validated-variations/references/type-rules.md",
+          "sha256": "7c3e997a828b758e10d0de3862e1e68a7a10a75bc5cc832b7f5090a98e5675a3"
+        }
+      ],
+      "rule_versions": [
+        {
+          "rule_key": "six-agent-control",
+          "version": "six-agent-control-v1.14.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-gates",
+          "version": "selection-gates-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/common-gates.md",
+          "sha256": "55c3d13588cab96057fcf1afddda4c20aa47fee620268e804b9e3e2dc6ab6717"
+        },
+        {
+          "rule_key": "market-entry",
+          "version": "market-entry-v0.6.0",
+          "source_path": "skills/_amazon-selection-shared/market-entry.md",
+          "sha256": "2b0d4301f08671e4f3348416da4eef41dffcf5c943e48c618ccf2f0f081bae9e"
+        },
+        {
+          "rule_key": "candidate-profit-workflow",
+          "version": "candidate-profit-workflow-v1.9.0",
+          "source_path": "skills/_amazon-selection-shared/candidate-profit-workflow.md",
+          "sha256": "b6e2939e760dc24caeb4bff901cfffe94ec72ac4b65927107f2e84b9b52fe3e7"
+        },
+        {
+          "rule_key": "batch-review-handoff",
+          "version": "batch-review-handoff-v2.0.0",
+          "source_path": "skills/_amazon-selection-shared/batch-review-handoff.md",
+          "sha256": "a01e07fd996c924544e6c8cba2d8cf7f3aaa046ce09559512a236495c905ee01"
+        },
+        {
+          "rule_key": "selection-execution",
+          "version": "selection-execution-v1.2.0",
+          "source_path": "skills/_amazon-selection-shared/six-agent-control.md",
+          "sha256": "2b08901cefec9d15725eb911ac1ec05fbb5a4f12665cd162d9a60ba214bdb2a2"
+        },
+        {
+          "rule_key": "selection-run-control",
+          "version": "selection-run-control-v1.1.0",
+          "source_path": "skills/_amazon-selection-shared/selection-run-control.md",
+          "sha256": "ef8ba4bee03041b028591ec204dd7d33ad9494350cb876ec159eb052693e313b"
+        },
+        {
+          "rule_key": "air-small-batch-window",
+          "version": "air-small-batch-window-v1.0.0",
+          "source_path": "skills/_amazon-selection-shared/air-small-batch-window.md",
+          "sha256": "a241e6e9738fd62a5b2c574feb40d58c5a82cc2d920113e1c483cf327722ac86"
+        },
+        {
+          "rule_key": "fba-fee-snapshot",
+          "version": "fba-fees-2026-09-21",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-2026-09-21.json",
+          "sha256": "6d76e28543192c4e6cd5c29ae17e69f5d19c8b0604bf7cae68ae9a202bf22378"
+        },
+        {
+          "rule_key": "fba-peak-fee-snapshot",
+          "version": "fba-fees-peak-2026-09-16",
+          "source_path": "skills/_amazon-selection-shared/fba-fees-peak-2026-09-16.json",
+          "sha256": "e675325592b6134f78016b235e71a811b62ed74759c0f874cf7016dcdc880264"
+        },
+        {
+          "rule_key": "commission-policy",
+          "version": "selection-fee-policy-2026-09-17",
+          "source_path": "skills/_amazon-selection-shared/selection-fee-policy-2026-09-17.json",
+          "sha256": "3e7274c280f1af46a8a535e72c3e559cc1c1579e5fd6ba2c95c0ae4044bfd517"
+        },
+        {
+          "rule_key": "selection-memory",
+          "version": "selection-memory-v0.10.0",
+          "source_path": "skills/_amazon-selection-shared/selection-memory.md",
+          "sha256": "4a1274ae58f5791ca6c760415ab3335585ee00a0fb6dfbb3f63ac7c7200c183d"
+        },
+        {
+          "rule_key": "validated_variations-type-rules",
+          "version": "validated-variations-v0.4.1",
+          "source_path": "skills/select-sorftime-amazon-validated-variations/references/type-rules.md",
+          "sha256": "7c3e997a828b758e10d0de3862e1e68a7a10a75bc5cc832b7f5090a98e5675a3"
+        }
+      ],
+      "input_schema_version": "selection-skill-launch.v1",
+      "output_schema_version": "selection-candidate.validated_variations.v1",
+      "enabled": true,
+      "supports_new_product_discovery": false,
+      "requires_base_product": true,
+      "supported_sites": [
+        "GB",
+        "DE",
+        "JP",
+        "CA"
+      ],
+      "execution_status": "registered_not_executable",
+      "modes": [
+        "base_product_expansion"
+      ],
+      "launch_parameters": [
+        "site",
+        "base_asin",
+        "proposed_dimension",
+        "target_offer"
+      ]
+    }
+  ]
+}

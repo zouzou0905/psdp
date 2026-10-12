@@ -1,0 +1,19 @@
+{
+  "items": [
+    {
+      "error_id": "e0000000-0000-0000-0000-000000000001",
+      "category": "integration",
+      "severity": "error",
+      "status": "open",
+      "module": "integration",
+      "task_id": "tsk_demo",
+      "run_id": "run_demo",
+      "action_id": "act_demo",
+      "summary": "Connection failed: [REDACTED]",
+      "occurred_at": "2026-10-06T00:00:00Z",
+      "resolved_at": null,
+      "trace_id": "trace_demo"
+    }
+  ],
+  "total": 1
+}

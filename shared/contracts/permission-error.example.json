@@ -1,0 +1,9 @@
+{
+  "error": {
+    "code": "PERMISSION_DENIED",
+    "message": "Permission denied",
+    "details": [],
+    "request_id": "req_example",
+    "trace_id": "trace_example"
+  }
+}

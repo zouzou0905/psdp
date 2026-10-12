@@ -1,0 +1,40 @@
+{
+  "schema_version": "amazon-selection-fee-policy-v1",
+  "effective_from": "2026-09-17",
+  "applies_to": {
+    "skills": "all_select_sorftime_amazon_skills",
+    "sites": ["GB", "DE", "JP", "CA"],
+    "categories": "all",
+    "candidates": "all"
+  },
+  "commission": {
+    "policy_id": "USER_FIXED_15_PERCENT_2026-09-17",
+    "rate": 0.15,
+    "calculation": "commission_base_local * 0.15",
+    "category_lookup_required_for_selection_model": false,
+    "minimum_referral_fee_applied": false,
+    "source": "User-confirmed internal selection profitability policy",
+    "note": "This is an internal modeling convention and is not a claim that Amazon's actual referral fee is universally 15 percent."
+  },
+  "fba_help_sources": [
+    {
+      "site": "US",
+      "reference_id": "GABBX6GZPA8MSZGW",
+      "url": "https://sellercentral.amazon.com/help/hub/reference/GABBX6GZPA8MSZGW",
+      "access_status_on_2026-09-17": "LOGIN_REQUIRED"
+    },
+    {
+      "site": "US",
+      "reference_id": "G201112670",
+      "url": "https://sellercentral.amazon.com/help/hub/reference/G201112670",
+      "access_status_on_2026-09-17": "LOGIN_REQUIRED"
+    },
+    {
+      "site": "GB",
+      "reference_id": "GABBX6GZPA8MSZGW",
+      "url": "https://sellercentral.amazon.co.uk/help/hub/reference/GABBX6GZPA8MSZGW",
+      "access_status_on_2026-09-17": "LOGIN_REQUIRED"
+    }
+  ],
+  "fba_source_rule": "Use the user-provided Seller Central help source for the matching marketplace. Never apply a US table to GB, DE, JP or CA, or a GB table to another marketplace."
+}

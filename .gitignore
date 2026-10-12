@@ -1,0 +1,66 @@
+# Runtime secrets
+.env
+.env.*
+**/.env
+**/.env.*
+!**/.env.example
+
+# Local-only documentation
+**/*.local.md
+
+# Python
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+**/.coverage
+**/.coverage.*
+**/htmlcov/
+
+# Node / Next.js
+**/node_modules/
+**/.next/
+**/.turbo/
+**/coverage/
+**/dist/
+**/build/
+**/*.tsbuildinfo
+
+# Project temporary and generated export files
+tmp/
+**/tmp/
+**/exports/
+**/*.log
+**/*.pid
+
+# Database and backup files
+**/*.dump
+**/*.backup
+**/*.bak
+**/*.sql.gz
+**/*.sqlite
+**/*.sqlite3
+**/*.db
+**/*.zip
+**/*.7z
+**/*.rar
+**/*.tar
+**/*.tar.gz
+
+# Credentials and keys
+**/*.pem
+**/*.key
+**/*.pfx
+**/*.p12
+**/credentials*.json
+**/secrets*.json
+
+# IDE and operating system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

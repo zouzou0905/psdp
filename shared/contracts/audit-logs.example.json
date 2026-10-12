@@ -1,0 +1,21 @@
+{
+  "items": [
+    {
+      "audit_id": "d0000000-0000-0000-0000-000000000001",
+      "actor_id": "40000000-0000-0000-0000-000000000004",
+      "actor_roles": [
+        "admin"
+      ],
+      "action": "admin.error.read",
+      "resource_type": "error",
+      "resource_id": null,
+      "result": "success",
+      "trace_id": "trace_demo",
+      "occurred_at": "2026-10-06T00:00:00Z",
+      "metadata_summary": {
+        "returned_count": "1"
+      }
+    }
+  ],
+  "total": 1
+}

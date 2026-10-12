@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "task_id": "tsk_demo",
+      "selection_id": "60000000-0000-0000-0000-000000000006",
+      "task_type": "profit_review",
+      "input_version": "quotation:1",
+      "status": "planned",
+      "run_id": null,
+      "result_version": null,
+      "error_code": null,
+      "created_at": "2026-10-08T00:00:00Z",
+      "updated_at": "2026-10-08T00:00:00Z"
+    }
+  ],
+  "total": 1,
+  "note": "Boundary example only; it does not claim an AI run succeeded."
+}

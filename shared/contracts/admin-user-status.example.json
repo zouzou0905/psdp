@@ -1,0 +1,26 @@
+{
+  "enable": {
+    "method": "POST",
+    "path": "/api/v1/admin/users/{user_id}/enable"
+  },
+  "disable": {
+    "method": "POST",
+    "path": "/api/v1/admin/users/{user_id}/disable"
+  },
+  "response": {
+    "user_id": "50000000-0000-0000-0000-000000000005",
+    "username": "new_operator",
+    "display_name": "New Operator",
+    "is_active": false,
+    "roles": [],
+    "modules": [],
+    "direct_permissions": [],
+    "effective_permissions": [],
+    "scopes": {
+      "organization_ids": [],
+      "team_ids": [],
+      "store_ids": []
+    },
+    "authorization_revision": 1
+  }
+}

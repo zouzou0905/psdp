@@ -1,0 +1,1410 @@
+{
+  "schema_version": "amazon-fba-fulfilment-fees-v2",
+  "snapshot_as_of": "2026-09-21",
+  "scope": "Outbound FBA fulfilment fee per unit sold on the local store. Referral, storage, inbound placement, returns, removal, VAT and optional fees are excluded.",
+  "business_scope": "GB, DE, JP and CA offers with packaged unit weight not exceeding 2 kg.",
+  "currency_by_site": {
+    "GB": "GBP",
+    "DE": "EUR",
+    "JP": "JPY",
+    "CA": "CAD"
+  },
+  "amounts_are": "base fulfilment fees before separately stated fuel and logistics surcharges",
+  "mandatory_recheck_on_or_after": "2026-10-15",
+  "mandatory_recheck_reason": "Recheck exact peak-period Fee Preview values and resolve the Canada rate gap before using the 2026-10-15 peak window for launch approval.",
+  "sources": [
+    {
+      "sites": [
+        "US"
+      ],
+      "title": "User-specified Amazon Seller Central FBA fee changes/rates help page",
+      "url": "https://sellercentral.amazon.com/help/hub/reference/GABBX6GZPA8MSZGW",
+      "verified_at": "2026-09-17",
+      "access_status": "LOGIN_REQUIRED",
+      "use_rule": "US only; retained for future US scope and never applied to GB, DE, JP or CA"
+    },
+    {
+      "sites": [
+        "US"
+      ],
+      "title": "User-specified Amazon Seller Central FBA fulfillment fees help page",
+      "url": "https://sellercentral.amazon.com/help/hub/reference/G201112670",
+      "verified_at": "2026-09-17",
+      "access_status": "LOGIN_REQUIRED",
+      "use_rule": "US only; retained for future US scope and never applied to GB, DE, JP or CA"
+    },
+    {
+      "sites": [
+        "GB"
+      ],
+      "title": "User-specified Amazon UK Seller Central FBA fee rates help page",
+      "url": "https://sellercentral.amazon.co.uk/help/hub/reference/GABBX6GZPA8MSZGW",
+      "verified_at": "2026-09-17",
+      "access_status": "LOGIN_REQUIRED",
+      "use_rule": "GB only; preferred official help source when accessible"
+    },
+    {
+      "sites": [
+        "GB",
+        "DE"
+      ],
+      "title": "Amazon Europe FBA Rate Card effective 17 April 2026",
+      "url": "https://m.media-amazon.com/images/G/02/sell/images/260410-FBA-Rate-Card-EN.pdf",
+      "verified_at": "2026-09-05"
+    },
+    {
+      "sites": [
+        "JP"
+      ],
+      "title": "Amazon Japan selling and FBA fees",
+      "url": "https://sell.amazon.co.jp/pricing",
+      "verified_at": "2026-09-04"
+    },
+    {
+      "sites": [
+        "CA"
+      ],
+      "title": "Amazon Canada selling and FBA fees",
+      "url": "https://sell.amazon.ca/pricing",
+      "verified_at": "2026-09-21"
+    },
+    {
+      "sites": [
+        "CA"
+      ],
+      "title": "Amazon Canada fuel and logistics surcharge",
+      "url": "https://sellercentral.amazon.ca/seller-forums/discussions/t/1c718d6b-ed69-4a07-b906-9052a59edac2",
+      "verified_at": "2026-09-21"
+    },
+    {
+      "sites": [
+        "GB"
+      ],
+      "title": "Amazon UK Low-Price FBA eligibility FAQ",
+      "url": "https://sell.amazon.co.uk/low-price-fba-rates",
+      "verified_at": "2026-09-05"
+    },
+    {
+      "sites": [
+        "DE"
+      ],
+      "title": "Amazon DE Low-Price FBA eligibility FAQ",
+      "url": "https://sell.amazon.de/en/fba-gebuhren-fur-niedrigpreisige-artikel",
+      "verified_at": "2026-09-05"
+    }
+  ],
+  "eu": {
+    "sites": [
+      "GB",
+      "DE"
+    ],
+    "effective_from": "2026-04-17",
+    "fuel_and_logistics_surcharge_rate": 0.015,
+    "current_fee_formula": "effective_fba_fee = base_fulfilment_fee * 1.015",
+    "dimensional_weight_kg_formula": "length_cm * width_cm * height_cm / 5000",
+    "shipping_weight_rule": "Use unit weight for envelopes, low-price FBA and selected-category parcels. For other parcels and non-special oversize, use the greater of unit and dimensional weight.",
+    "de_fee_mode_rule": "Use DE_ONLY when Central Europe Programme participation is unknown. DE_ONLY already includes the EUR 0.26 difference.",
+    "standard_fees": [
+      {
+        "tier": "light_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          2.5
+        ],
+        "max_shipping_weight_g": 20,
+        "fees": {
+          "GB": 1.83,
+          "DE_CEP": 2.07,
+          "DE_ONLY": 2.33
+        }
+      },
+      {
+        "tier": "light_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          2.5
+        ],
+        "max_shipping_weight_g": 40,
+        "fees": {
+          "GB": 1.87,
+          "DE_CEP": 2.11,
+          "DE_ONLY": 2.37
+        }
+      },
+      {
+        "tier": "light_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          2.5
+        ],
+        "max_shipping_weight_g": 60,
+        "fees": {
+          "GB": 1.89,
+          "DE_CEP": 2.13,
+          "DE_ONLY": 2.39
+        }
+      },
+      {
+        "tier": "light_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          2.5
+        ],
+        "max_shipping_weight_g": 80,
+        "fees": {
+          "GB": 2.07,
+          "DE_CEP": 2.26,
+          "DE_ONLY": 2.52
+        }
+      },
+      {
+        "tier": "light_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          2.5
+        ],
+        "max_shipping_weight_g": 100,
+        "fees": {
+          "GB": 2.08,
+          "DE_CEP": 2.28,
+          "DE_ONLY": 2.54
+        }
+      },
+      {
+        "tier": "standard_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          2.5
+        ],
+        "max_shipping_weight_g": 210,
+        "fees": {
+          "GB": 2.1,
+          "DE_CEP": 2.31,
+          "DE_ONLY": 2.57
+        }
+      },
+      {
+        "tier": "standard_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          2.5
+        ],
+        "max_shipping_weight_g": 460,
+        "fees": {
+          "GB": 2.16,
+          "DE_CEP": 2.42,
+          "DE_ONLY": 2.68
+        }
+      },
+      {
+        "tier": "large_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          4
+        ],
+        "max_shipping_weight_g": 960,
+        "fees": {
+          "GB": 2.72,
+          "DE_CEP": 2.78,
+          "DE_ONLY": 3.04
+        }
+      },
+      {
+        "tier": "extra_large_envelope",
+        "max_dimensions_cm": [
+          33,
+          23,
+          6
+        ],
+        "max_shipping_weight_g": 960,
+        "fees": {
+          "GB": 2.94,
+          "DE_CEP": 3.16,
+          "DE_ONLY": 3.42
+        }
+      },
+      {
+        "tier": "small_parcel",
+        "max_dimensions_cm": [
+          35,
+          25,
+          12
+        ],
+        "max_unit_weight_kg": 3.9,
+        "max_dimensional_weight_kg": 2.1,
+        "max_shipping_weight_g": 150,
+        "fees": {
+          "GB": 2.91,
+          "DE_CEP": 3.12,
+          "DE_ONLY": 3.38
+        }
+      },
+      {
+        "tier": "small_parcel",
+        "max_dimensions_cm": [
+          35,
+          25,
+          12
+        ],
+        "max_unit_weight_kg": 3.9,
+        "max_dimensional_weight_kg": 2.1,
+        "max_shipping_weight_g": 400,
+        "fees": {
+          "GB": 3,
+          "DE_CEP": 3.13,
+          "DE_ONLY": 3.39
+        }
+      },
+      {
+        "tier": "small_parcel",
+        "max_dimensions_cm": [
+          35,
+          25,
+          12
+        ],
+        "max_unit_weight_kg": 3.9,
+        "max_dimensional_weight_kg": 2.1,
+        "max_shipping_weight_g": 900,
+        "fees": {
+          "GB": 3.04,
+          "DE_CEP": 3.14,
+          "DE_ONLY": 3.4
+        }
+      },
+      {
+        "tier": "small_parcel",
+        "max_dimensions_cm": [
+          35,
+          25,
+          12
+        ],
+        "max_unit_weight_kg": 3.9,
+        "max_dimensional_weight_kg": 2.1,
+        "max_shipping_weight_g": 1400,
+        "fees": {
+          "GB": 3.05,
+          "DE_CEP": 3.15,
+          "DE_ONLY": 3.41
+        }
+      },
+      {
+        "tier": "small_parcel",
+        "max_dimensions_cm": [
+          35,
+          25,
+          12
+        ],
+        "max_unit_weight_kg": 3.9,
+        "max_dimensional_weight_kg": 2.1,
+        "max_shipping_weight_g": 1900,
+        "fees": {
+          "GB": 3.25,
+          "DE_CEP": 3.17,
+          "DE_ONLY": 3.43
+        }
+      },
+      {
+        "tier": "small_parcel",
+        "max_dimensions_cm": [
+          35,
+          25,
+          12
+        ],
+        "max_unit_weight_kg": 3.9,
+        "max_dimensional_weight_kg": 2.1,
+        "max_shipping_weight_g": 3900,
+        "fees": {
+          "GB": 3.27,
+          "DE_CEP": 4.28,
+          "DE_ONLY": 4.54
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 150,
+        "fees": {
+          "GB": 2.94,
+          "DE_CEP": 3.13,
+          "DE_ONLY": 3.39
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 400,
+        "fees": {
+          "GB": 3.01,
+          "DE_CEP": 3.16,
+          "DE_ONLY": 3.42
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 900,
+        "fees": {
+          "GB": 3.06,
+          "DE_CEP": 3.18,
+          "DE_ONLY": 3.44
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 1400,
+        "fees": {
+          "GB": 3.26,
+          "DE_CEP": 3.67,
+          "DE_ONLY": 3.93
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 1900,
+        "fees": {
+          "GB": 3.48,
+          "DE_CEP": 3.69,
+          "DE_ONLY": 3.95
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 2900,
+        "fees": {
+          "GB": 3.49,
+          "DE_CEP": 4.29,
+          "DE_ONLY": 4.55
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 3900,
+        "fees": {
+          "GB": 3.54,
+          "DE_CEP": 4.83,
+          "DE_ONLY": 5.09
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 5900,
+        "fees": {
+          "GB": 3.56,
+          "DE_CEP": 4.96,
+          "DE_ONLY": 5.22
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 8900,
+        "fees": {
+          "GB": 3.57,
+          "DE_CEP": 5.77,
+          "DE_ONLY": 6.03
+        }
+      },
+      {
+        "tier": "standard_parcel",
+        "max_dimensions_cm": [
+          45,
+          34,
+          26
+        ],
+        "max_unit_weight_kg": 11.9,
+        "max_dimensional_weight_kg": 7.96,
+        "max_shipping_weight_g": 11900,
+        "fees": {
+          "GB": 3.58,
+          "DE_CEP": 6.39,
+          "DE_ONLY": 6.65
+        }
+      }
+    ],
+    "oversize_entry_fees": [
+      {
+        "tier": "small_oversize",
+        "max_dimensions_cm": [
+          61,
+          46,
+          46
+        ],
+        "max_unit_weight_kg": 1.76,
+        "max_dimensional_weight_kg": 25.82,
+        "base_through_shipping_weight_g": 760,
+        "fees": {
+          "GB": 3.49,
+          "DE_CEP": 4.3,
+          "DE_ONLY": 4.56
+        },
+        "increment_per_kg_above_760g": {
+          "GB": 0.25,
+          "DE_CEP": 0.18,
+          "DE_ONLY": 0.18
+        }
+      },
+      {
+        "tier": "standard_oversize_light",
+        "max_dimensions_cm": [
+          101,
+          60,
+          60
+        ],
+        "max_unit_weight_kg": 15,
+        "max_dimensional_weight_kg": 72.72,
+        "base_through_shipping_weight_g": 760,
+        "fees": {
+          "GB": 4.35,
+          "DE_CEP": 4.33,
+          "DE_ONLY": 4.59
+        },
+        "increment_per_kg_above_760g": {
+          "GB": 0.15,
+          "DE_CEP": 0.18,
+          "DE_ONLY": 0.18
+        }
+      },
+      {
+        "tier": "standard_oversize_large",
+        "max_dimensions_cm": [
+          120,
+          60,
+          60
+        ],
+        "max_unit_weight_kg": 23,
+        "max_dimensional_weight_kg": 86.4,
+        "base_through_shipping_weight_g": 760,
+        "fees": {
+          "GB": 5.67,
+          "DE_CEP": 5.8,
+          "DE_ONLY": 6.06
+        },
+        "increment_per_kg_above_760g": {
+          "GB": 0.07,
+          "DE_CEP": 0.08,
+          "DE_ONLY": 0.08
+        }
+      }
+    ],
+    "larger_dimension_rule": "Bulky or special oversize can still occur below 2 kg when dimensions exceed the stored rectangular tiers. Do not extrapolate a lower tier; use the Revenue Calculator or Seller Central Fee Preview.",
+    "selected_category_parcel_fees": {
+      "shipping_weight_basis": "unit_weight_only",
+      "calculation": "base_fee_through_100g + ceil(max(unit_weight_g - 100, 0) / 100) * increment_per_additional_100g",
+      "categories": [
+        "Baby Strollers and Safety Equipment",
+        "Door, Window and Shower Accessories",
+        "Eyewear Protection",
+        "Footwear",
+        "Furniture Accessories",
+        "Grocery and Gourmet",
+        "Home adhesives and cable ties",
+        "Home Linen and Rugs",
+        "Luggage Accessories",
+        "Mattresses",
+        "Packing Material",
+        "Pet Clothing and Food",
+        "Printer and Scanner accessories",
+        "Reusable Work and Safety Gloves",
+        "Clothing and Accessories",
+        "Backpacks and Handbags"
+      ],
+      "tiers": [
+        {
+          "tier": "small_parcel_1",
+          "max_dimensions_cm": [
+            35,
+            25,
+            7
+          ],
+          "max_unit_weight_kg": 3.9,
+          "base_fee_through_100g": {
+            "GB": 2.83,
+            "DE_CEP": 3.04,
+            "DE_ONLY": 3.3
+          },
+          "increment_per_additional_100g": {
+            "GB": 0.02,
+            "DE_CEP": 0.05,
+            "DE_ONLY": 0.05
+          }
+        },
+        {
+          "tier": "small_parcel_2",
+          "max_dimensions_cm": [
+            35,
+            25,
+            9
+          ],
+          "max_unit_weight_kg": 3.9,
+          "base_fee_through_100g": {
+            "GB": 2.87,
+            "DE_CEP": 3.08,
+            "DE_ONLY": 3.34
+          },
+          "increment_per_additional_100g": {
+            "GB": 0.02,
+            "DE_CEP": 0.06,
+            "DE_ONLY": 0.06
+          }
+        },
+        {
+          "tier": "small_parcel_3",
+          "max_dimensions_cm": [
+            35,
+            25,
+            12
+          ],
+          "max_unit_weight_kg": 3.9,
+          "base_fee_through_100g": {
+            "GB": 2.91,
+            "DE_CEP": 3.12,
+            "DE_ONLY": 3.38
+          },
+          "increment_per_additional_100g": {
+            "GB": 0.02,
+            "DE_CEP": 0.07,
+            "DE_ONLY": 0.07
+          }
+        },
+        {
+          "tier": "medium_parcel_1",
+          "max_dimensions_cm": [
+            40,
+            30,
+            6
+          ],
+          "max_unit_weight_kg": 11.9,
+          "base_fee_through_100g": {
+            "GB": 2.97,
+            "DE_CEP": 3.24,
+            "DE_ONLY": 3.5
+          },
+          "increment_per_additional_100g": {
+            "GB": 0.02,
+            "DE_CEP": 0.07,
+            "DE_ONLY": 0.07
+          }
+        },
+        {
+          "tier": "medium_parcel_2",
+          "max_dimensions_cm": [
+            40,
+            30,
+            20
+          ],
+          "max_unit_weight_kg": 11.9,
+          "base_fee_through_100g": {
+            "GB": 3.1,
+            "DE_CEP": 3.47,
+            "DE_ONLY": 3.73
+          },
+          "increment_per_additional_100g": {
+            "GB": 0.03,
+            "DE_CEP": 0.07,
+            "DE_ONLY": 0.07
+          }
+        },
+        {
+          "tier": "large_parcel_1",
+          "max_dimensions_cm": [
+            45,
+            34,
+            10
+          ],
+          "max_unit_weight_kg": 11.9,
+          "base_fee_through_100g": {
+            "GB": 3.34,
+            "DE_CEP": 3.71,
+            "DE_ONLY": 3.97
+          },
+          "increment_per_additional_100g": {
+            "GB": 0.03,
+            "DE_CEP": 0.07,
+            "DE_ONLY": 0.07
+          }
+        },
+        {
+          "tier": "large_parcel_2",
+          "max_dimensions_cm": [
+            45,
+            34,
+            26
+          ],
+          "max_unit_weight_kg": 11.9,
+          "base_fee_through_100g": {
+            "GB": 3.97,
+            "DE_CEP": 4.12,
+            "DE_ONLY": 4.38
+          },
+          "increment_per_additional_100g": {
+            "GB": 0.03,
+            "DE_CEP": 0.08,
+            "DE_ONLY": 0.08
+          }
+        }
+      ]
+    },
+    "low_price_fba": {
+      "max_dimensions_cm": [
+        35,
+        25,
+        12
+      ],
+      "general_category_price_caps": {
+        "GB": 20,
+        "DE": 20
+      },
+      "exception_category_price_caps": {
+        "GB": 10,
+        "DE": 11
+      },
+      "exception_categories": [
+        "Beauty",
+        "Health and Personal Care",
+        "Business, Industrial and Scientific Supplies",
+        "Office Products",
+        "Grocery and Gourmet",
+        "Books",
+        "Amazon Device Accessories",
+        "Kitchen"
+      ],
+      "fees": [
+        {
+          "tier": "light_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            2.5
+          ],
+          "max_unit_weight_g": 20,
+          "fees": {
+            "GB": 1.46,
+            "DE_CEP": 1.61,
+            "DE_ONLY": 1.87
+          }
+        },
+        {
+          "tier": "light_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            2.5
+          ],
+          "max_unit_weight_g": 40,
+          "fees": {
+            "GB": 1.5,
+            "DE_CEP": 1.64,
+            "DE_ONLY": 1.9
+          }
+        },
+        {
+          "tier": "light_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            2.5
+          ],
+          "max_unit_weight_g": 60,
+          "fees": {
+            "GB": 1.52,
+            "DE_CEP": 1.66,
+            "DE_ONLY": 1.92
+          }
+        },
+        {
+          "tier": "light_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            2.5
+          ],
+          "max_unit_weight_g": 80,
+          "fees": {
+            "GB": 1.67,
+            "DE_CEP": 1.8,
+            "DE_ONLY": 2.06
+          }
+        },
+        {
+          "tier": "light_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            2.5
+          ],
+          "max_unit_weight_g": 100,
+          "fees": {
+            "GB": 1.7,
+            "DE_CEP": 1.83,
+            "DE_ONLY": 2.09
+          }
+        },
+        {
+          "tier": "standard_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            2.5
+          ],
+          "max_unit_weight_g": 210,
+          "fees": {
+            "GB": 1.73,
+            "DE_CEP": 1.86,
+            "DE_ONLY": 2.12
+          }
+        },
+        {
+          "tier": "standard_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            2.5
+          ],
+          "max_unit_weight_g": 460,
+          "fees": {
+            "GB": 1.87,
+            "DE_CEP": 2.02,
+            "DE_ONLY": 2.28
+          }
+        },
+        {
+          "tier": "large_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            4
+          ],
+          "max_unit_weight_g": 960,
+          "fees": {
+            "GB": 2.42,
+            "DE_CEP": 2.39,
+            "DE_ONLY": 2.65
+          }
+        },
+        {
+          "tier": "extra_large_envelope",
+          "max_dimensions_cm": [
+            33,
+            23,
+            6
+          ],
+          "max_unit_weight_g": 960,
+          "fees": {
+            "GB": 2.65,
+            "DE_CEP": 2.78,
+            "DE_ONLY": 3.04
+          }
+        },
+        {
+          "tier": "small_parcel",
+          "max_dimensions_cm": [
+            35,
+            25,
+            12
+          ],
+          "max_unit_weight_g": 150,
+          "fees": {
+            "GB": 2.67,
+            "DE_CEP": 2.78,
+            "DE_ONLY": 3.04
+          }
+        },
+        {
+          "tier": "small_parcel",
+          "max_dimensions_cm": [
+            35,
+            25,
+            12
+          ],
+          "max_unit_weight_g": 400,
+          "fees": {
+            "GB": 2.7,
+            "DE_CEP": 2.99,
+            "DE_ONLY": 3.25
+          }
+        }
+      ],
+      "weight_rule": "Use each fee row's weight limit. Published fee-row availability does not itself establish programme eligibility.",
+      "eligibility": {
+        "auto_eligibility_max_unit_weight_g": 400,
+        "auto_eligibility_max_dimensions_cm": [
+          35,
+          25,
+          12
+        ],
+        "price_rule": "Apply the site and category price cap, then dimensions, weight and category restrictions; match all row conditions.",
+        "over_400g_envelope_status": "FBA_ELIGIBILITY_CONFLICT",
+        "over_400g_rule": "Official April rate card includes 460g/960g envelope rows, while UK/DE public eligibility FAQs state 400g. Preserve raw rows. Above 400g do not auto-apply low-price fees or erase rows: require Revenue Calculator/Fee Preview confirmation for this exact Offer.",
+        "research_fallback": "Show standard FBA as a labelled conservative scenario when its tier is known; eligibility and final actual fee remain pending until resolved.",
+        "small_parcel_max_unit_weight_g": 400,
+        "confirmed_fee_preview_rule": "A current exact-Offer Fee Preview/Revenue Calculator with source and timestamp may resolve eligibility. Conflicting previews require reconciliation; never silently select the lower amount.",
+        "verified_at": "2026-09-05"
+      }
+    }
+  },
+  "jp": {
+    "currency": "JPY",
+    "verified_at": "2026-09-04",
+    "fees_include_consumption_tax_rate": 0.1,
+    "confirmed_separate_fuel_surcharge_rate": 0,
+    "dimension_rule": "Except for explicitly rectangular small and flat-standard rows, Amazon states dimension as the packaged length-width-height sum. Because its public table contains overlapping Standard and Oversize sum thresholds, use the Revenue Calculator or observed Seller Central tier when ambiguous.",
+    "fees": [
+      {
+        "tier": "small",
+        "max_dimensions_cm": [
+          25,
+          18,
+          2
+        ],
+        "max_unit_weight_g": 250,
+        "fee_price_over_1000": 288,
+        "fee_price_at_or_below_1000": 222
+      },
+      {
+        "tier": "standard_flat",
+        "max_dimensions_cm": [
+          35,
+          30,
+          3.3
+        ],
+        "max_unit_weight_g": 1000,
+        "fee_price_over_1000": 318,
+        "fee_price_at_or_below_1000": 252
+      },
+      {
+        "tier": "standard",
+        "max_sum_dimensions_cm": 20,
+        "max_unit_weight_kg": 2,
+        "fee_price_over_1000": 410,
+        "fee_price_at_or_below_1000": 344
+      },
+      {
+        "tier": "standard",
+        "max_sum_dimensions_cm": 30,
+        "max_unit_weight_kg": 2,
+        "fee_price_over_1000": 415,
+        "fee_price_at_or_below_1000": 358
+      },
+      {
+        "tier": "standard",
+        "max_sum_dimensions_cm": 40,
+        "max_unit_weight_kg": 2,
+        "fee_price_over_1000": 420,
+        "fee_price_at_or_below_1000": 371
+      },
+      {
+        "tier": "standard",
+        "max_sum_dimensions_cm": 50,
+        "max_unit_weight_kg": 2,
+        "fee_price_over_1000": 425,
+        "fee_price_at_or_below_1000": 379
+      },
+      {
+        "tier": "standard",
+        "max_sum_dimensions_cm": 60,
+        "max_unit_weight_kg": 2,
+        "fee_price_over_1000": 430,
+        "fee_price_at_or_below_1000": 391
+      },
+      {
+        "tier": "standard",
+        "max_sum_dimensions_cm": 80,
+        "max_unit_weight_kg": 5,
+        "fee_price_over_1000": 472,
+        "fee_price_at_or_below_1000": 427
+      },
+      {
+        "tier": "standard",
+        "max_sum_dimensions_cm": 100,
+        "max_unit_weight_kg": 9,
+        "fee_price_over_1000": 532,
+        "fee_price_at_or_below_1000": 466
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 60,
+        "max_unit_weight_kg": 2,
+        "fee_price_over_1000": 589,
+        "fee_price_at_or_below_1000": 523
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 80,
+        "max_unit_weight_kg": 5,
+        "fee_price_over_1000": 624,
+        "fee_price_at_or_below_1000": 558
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 100,
+        "max_unit_weight_kg": 10,
+        "fee_price_over_1000": 675,
+        "fee_price_at_or_below_1000": 609
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 120,
+        "max_unit_weight_kg": 15,
+        "fee_price_over_1000": 781,
+        "fee_price_at_or_below_1000": 715
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 140,
+        "max_unit_weight_kg": 20,
+        "fee_price_over_1000": 1020,
+        "fee_price_at_or_below_1000": 954
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 160,
+        "max_unit_weight_kg": 25,
+        "fee_price_over_1000": 1100,
+        "fee_price_at_or_below_1000": 1034
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 180,
+        "max_unit_weight_kg": 30,
+        "fee_price_over_1000": 1532,
+        "fee_price_at_or_below_1000": 1466
+      },
+      {
+        "tier": "oversize",
+        "max_sum_dimensions_cm": 200,
+        "max_unit_weight_kg": 40,
+        "fee_price_over_1000": 1756,
+        "fee_price_at_or_below_1000": 1690
+      },
+      {
+        "tier": "supersize",
+        "max_sum_dimensions_cm": 200,
+        "max_unit_weight_kg": 50,
+        "fee_price_over_1000": 2755,
+        "fee_price_at_or_below_1000": 2689
+      },
+      {
+        "tier": "supersize",
+        "max_sum_dimensions_cm": 220,
+        "max_unit_weight_kg": 50,
+        "fee_price_over_1000": 3573,
+        "fee_price_at_or_below_1000": 3507
+      },
+      {
+        "tier": "supersize",
+        "max_sum_dimensions_cm": 240,
+        "max_unit_weight_kg": 50,
+        "fee_price_over_1000": 4496,
+        "fee_price_at_or_below_1000": 4430
+      },
+      {
+        "tier": "supersize",
+        "max_sum_dimensions_cm": 260,
+        "max_unit_weight_kg": 50,
+        "fee_price_over_1000": 5625,
+        "fee_price_at_or_below_1000": 5559
+      }
+    ]
+  },
+  "ca": {
+    "currency": "CAD",
+    "verified_at": "2026-09-21",
+    "fuel_and_logistics_surcharge_rate": 0.035,
+    "current_fee_formula": "effective_fba_fee = max(base_fulfilment_fee - applicable_low_price_discount, 0) * 1.035",
+    "low_price_discount": {
+      "strictly_below_price": 14,
+      "discount": 0.8,
+      "oversize_auto_apply": false,
+      "oversize_note": "The public page does not clarify every exclusion. Apply the discount to oversize only when the Revenue Calculator or Fee Preview confirms eligibility."
+    },
+    "shipping_weight_rule": "Use the greater of unit and dimensional weight. Round the selected shipping weight up to the next 100 g for envelope and standard-size tiers and to the next 500 g for oversize tiers.",
+    "envelope_dimensions_status": "The public pricing page exposes envelope weight fees but links dimensions to a Seller Central JavaScript/login page. Do not auto-pass envelope dimensions from an unverified third-party value.",
+    "standard_max_dimensions_cm": [
+      45.72,
+      35.56,
+      20.32
+    ],
+    "standard_max_unit_weight_kg": 9,
+    "envelope_fees": [
+      {
+        "max_shipping_weight_g": 100,
+        "base_fee": 4.46
+      },
+      {
+        "max_shipping_weight_g": 200,
+        "base_fee": 4.71
+      },
+      {
+        "max_shipping_weight_g": 300,
+        "base_fee": 5.01
+      },
+      {
+        "max_shipping_weight_g": 400,
+        "base_fee": 5.28
+      },
+      {
+        "max_shipping_weight_g": 500,
+        "base_fee": 5.62
+      }
+    ],
+    "standard_fees": [
+      {
+        "max_shipping_weight_g": 100,
+        "base_fee": 5.92
+      },
+      {
+        "max_shipping_weight_g": 200,
+        "base_fee": 6.12
+      },
+      {
+        "max_shipping_weight_g": 300,
+        "base_fee": 6.36
+      },
+      {
+        "max_shipping_weight_g": 400,
+        "base_fee": 6.73
+      },
+      {
+        "max_shipping_weight_g": 500,
+        "base_fee": 7.23
+      },
+      {
+        "max_shipping_weight_g": 600,
+        "base_fee": 7.4
+      },
+      {
+        "max_shipping_weight_g": 700,
+        "base_fee": 7.71
+      },
+      {
+        "max_shipping_weight_g": 800,
+        "base_fee": 7.95
+      },
+      {
+        "max_shipping_weight_g": 900,
+        "base_fee": 8.25
+      },
+      {
+        "max_shipping_weight_g": 1000,
+        "base_fee": 8.49
+      },
+      {
+        "max_shipping_weight_g": 1100,
+        "base_fee": 8.58
+      },
+      {
+        "max_shipping_weight_g": 1200,
+        "base_fee": 8.84
+      },
+      {
+        "max_shipping_weight_g": 1300,
+        "base_fee": 9.04
+      },
+      {
+        "max_shipping_weight_g": 1400,
+        "base_fee": 9.29
+      },
+      {
+        "max_shipping_weight_g": 1500,
+        "base_fee": 9.6
+      },
+      {
+        "min_shipping_weight_exclusive_g": 1500,
+        "max_shipping_weight_g": 9000,
+        "base_fee_for_first_1500g": 10.32,
+        "increment_per_additional_100g": 0.09
+      }
+    ],
+    "oversize_entry_fees": [
+      {
+        "tier": "small_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 15.43,
+        "increment_per_additional_500g": 0.46
+      },
+      {
+        "tier": "medium_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 37.78,
+        "increment_per_additional_500g": 0.52
+      },
+      {
+        "tier": "large_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 82.2,
+        "increment_per_additional_500g": 0.58
+      },
+      {
+        "tier": "special_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 150.78,
+        "increment_per_additional_500g": 0.58
+      }
+    ],
+    "rate_status_as_of_2026_09_21": {
+      "2026-09-21_to_2026-10-14": "CURRENT_RATE_NOT_PRESENT_IN_USER_PDF_REQUIRE_FEE_PREVIEW",
+      "2026-10-15_to_2027-01-14": "PEAK_TABLE_AVAILABLE",
+      "from_2027-01-15": "NON_PEAK_TABLE_AVAILABLE"
+    },
+    "fee_excludes_canadian_sales_tax": true,
+    "tax_rule": "Published Canada FBA figures exclude applicable GST/HST; Amazon adds tax where applicable. Keep tax as a separate editable input in profit models.",
+    "dimensional_weight_divisor_cm3_per_kg": 5000,
+    "dimensional_weight_divisor_status": "INFERRED_FROM_OFFICIAL_EXAMPLES_NOT_EXPLICITLY_STATED",
+    "dimensional_weight_divisor_note": "The PDF examples calculate 42.2×33.8×19.6 cm as about 5.59 kg and 19.4×13.8×1.6 cm as about 85 g, which implies cm³/5000. Exact offers still require the Revenue Calculator or Fee Preview.",
+    "base_rate_effective_from": "2027-01-15",
+    "base_rate_use_rule": "The stored envelope, standard and oversize base_fee rows are the non-peak rates effective 2027-01-15. Do not use them for 2026-09-21 through 2026-10-14.",
+    "peak_window": {
+      "effective_from": "2026-10-15",
+      "effective_through": "2027-01-14",
+      "note": "Figures exclude the separately stated 3.5% fuel and logistics surcharge."
+    },
+    "peak_envelope_fees": [
+      {
+        "max_shipping_weight_g": 100,
+        "base_fee": 4.73
+      },
+      {
+        "max_shipping_weight_g": 200,
+        "base_fee": 4.99
+      },
+      {
+        "max_shipping_weight_g": 300,
+        "base_fee": 5.31
+      },
+      {
+        "max_shipping_weight_g": 400,
+        "base_fee": 5.6
+      },
+      {
+        "max_shipping_weight_g": 500,
+        "base_fee": 5.95
+      }
+    ],
+    "peak_standard_fees": [
+      {
+        "max_shipping_weight_g": 100,
+        "base_fee": 6.28
+      },
+      {
+        "max_shipping_weight_g": 200,
+        "base_fee": 6.49
+      },
+      {
+        "max_shipping_weight_g": 300,
+        "base_fee": 6.74
+      },
+      {
+        "max_shipping_weight_g": 400,
+        "base_fee": 7.13
+      },
+      {
+        "max_shipping_weight_g": 500,
+        "base_fee": 7.65
+      },
+      {
+        "max_shipping_weight_g": 600,
+        "base_fee": 7.84
+      },
+      {
+        "max_shipping_weight_g": 700,
+        "base_fee": 8.17
+      },
+      {
+        "max_shipping_weight_g": 800,
+        "base_fee": 8.43
+      },
+      {
+        "max_shipping_weight_g": 900,
+        "base_fee": 8.74
+      },
+      {
+        "max_shipping_weight_g": 1000,
+        "base_fee": 8.99
+      },
+      {
+        "max_shipping_weight_g": 1100,
+        "base_fee": 9.1
+      },
+      {
+        "max_shipping_weight_g": 1200,
+        "base_fee": 9.37
+      },
+      {
+        "max_shipping_weight_g": 1300,
+        "base_fee": 9.58
+      },
+      {
+        "max_shipping_weight_g": 1400,
+        "base_fee": 9.85
+      },
+      {
+        "max_shipping_weight_g": 1500,
+        "base_fee": 10.17
+      },
+      {
+        "min_shipping_weight_exclusive_g": 1500,
+        "max_shipping_weight_g": 9000,
+        "base_fee_for_first_1500g": 11.0,
+        "increment_per_additional_100g": 0.09
+      }
+    ],
+    "peak_oversize_entry_fees": [
+      {
+        "tier": "small_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 16.77,
+        "increment_per_additional_500g": 0.46
+      },
+      {
+        "tier": "medium_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 41.64,
+        "increment_per_additional_500g": 0.52
+      },
+      {
+        "tier": "large_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 89.59,
+        "increment_per_additional_500g": 0.58
+      },
+      {
+        "tier": "special_oversize",
+        "base_through_shipping_weight_g": 500,
+        "base_fee": 166.85,
+        "increment_per_additional_500g": 0.58
+      }
+    ],
+    "size_tier_source_status": "INCOMPLETE_IN_USER_PDF",
+    "size_tier_rule": "The Canada PDF links to a separate size-tier page and does not reproduce complete dimensional thresholds. Do not auto-route an exact fee tier unless the stored verified threshold applies or Fee Preview confirms it."
+  },
+  "supersedes": "fba-fees-2026-09-05",
+  "revision_scope": "User-provided PDFs reviewed page by page on 2026-09-21. Canada peak and 2027 non-peak periods, rounding, tax exclusion and surcharge were added; EU low-price eligibility was reconfirmed; the EU classification PDF is retained as historical 2025 classification context only; US is inactive reference only.",
+  "source_pdf_audit": {
+    "reviewed_at": "2026-09-21",
+    "review_method": "full text extraction plus visual review of all 69 rendered pages",
+    "documents": [
+      {
+        "sites": [
+          "CA"
+        ],
+        "path": "C:/Users/admin/Desktop/加拿大FBA费.pdf",
+        "pages": 9,
+        "role": "Canada 2026 festive peak and 2027-01-15 onward non-peak fee tables"
+      },
+      {
+        "sites": [
+          "GB",
+          "DE"
+        ],
+        "path": "C:/Users/admin/Desktop/英+欧低价商品FBA费用.pdf",
+        "pages": 7,
+        "role": "Low-Price FBA price, category, size, weight and fee eligibility"
+      },
+      {
+        "sites": [
+          "GB",
+          "DE"
+        ],
+        "path": "C:/Users/admin/Desktop/英+欧FBA费用分类.pdf",
+        "pages": 19,
+        "role": "2025 historical size-tier classification; never overwrite newer 2026 rate rows"
+      },
+      {
+        "sites": [
+          "US"
+        ],
+        "path": "C:/Users/admin/Desktop/美国FBA费.pdf",
+        "pages": 34,
+        "role": "US-only reference; excluded from the GB/DE/JP/CA selection agents"
+      }
+    ]
+  },
+  "us_reference_only": {
+    "active_selection_scope": false,
+    "verified_at": "2026-09-21",
+    "non_peak_window": [
+      "2026-01-15",
+      "2026-10-14"
+    ],
+    "peak_window": [
+      "2026-10-15",
+      "2027-01-14"
+    ],
+    "price_bands_usd": [
+      "<10",
+      "10_to_50_inclusive",
+      ">50"
+    ],
+    "fuel_and_logistics_surcharge_rate": 0.035,
+    "dimensional_weight_divisor_in3_per_lb": 139,
+    "tier_dimensions_status": "NOT_REPRODUCED_IN_PDF_LINKED_EXTERNALLY",
+    "use_rule": "Reference only. Never apply these rates to GB, DE, JP or CA."
+  }
+}

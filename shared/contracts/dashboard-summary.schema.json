@@ -1,0 +1,572 @@
+{
+  "$defs": {
+    "AdminCounts": {
+      "properties": {
+        "open_errors": {
+          "minimum": 0,
+          "title": "Open Errors",
+          "type": "integer"
+        },
+        "pending_ai_feedback": {
+          "minimum": 0,
+          "title": "Pending Ai Feedback",
+          "type": "integer"
+        },
+        "audit_events": {
+          "minimum": 0,
+          "title": "Audit Events",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "open_errors",
+        "pending_ai_feedback",
+        "audit_events"
+      ],
+      "title": "AdminCounts",
+      "type": "object"
+    },
+    "AdminDashboardResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "viewer": {
+          "$ref": "#/$defs/ViewerResponse"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        },
+        "data_status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "type": "string"
+        },
+        "workspace": {
+          "const": "admin",
+          "title": "Workspace",
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/$defs/AdminCounts"
+        },
+        "readable_modules": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Readable Modules",
+          "type": "array"
+        },
+        "alerts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alerts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "viewer",
+        "generated_at",
+        "data_status",
+        "disclaimer",
+        "workspace",
+        "counts",
+        "readable_modules",
+        "alerts"
+      ],
+      "title": "AdminDashboardResponse",
+      "type": "object"
+    },
+    "CreativeCounts": {
+      "properties": {
+        "pending_content_tasks": {
+          "minimum": 0,
+          "title": "Pending Content Tasks",
+          "type": "integer"
+        },
+        "assets_in_review": {
+          "minimum": 0,
+          "title": "Assets In Review",
+          "type": "integer"
+        },
+        "generation_failures": {
+          "minimum": 0,
+          "title": "Generation Failures",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pending_content_tasks",
+        "assets_in_review",
+        "generation_failures"
+      ],
+      "title": "CreativeCounts",
+      "type": "object"
+    },
+    "CreativeDashboardResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "viewer": {
+          "$ref": "#/$defs/ViewerResponse"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        },
+        "data_status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "type": "string"
+        },
+        "workspace": {
+          "const": "creative",
+          "title": "Workspace",
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/$defs/CreativeCounts"
+        },
+        "content_tasks": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceRecordResponse"
+          },
+          "title": "Content Tasks",
+          "type": "array"
+        },
+        "alerts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alerts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "viewer",
+        "generated_at",
+        "data_status",
+        "disclaimer",
+        "workspace",
+        "counts",
+        "content_tasks",
+        "alerts"
+      ],
+      "title": "CreativeDashboardResponse",
+      "type": "object"
+    },
+    "DataScope": {
+      "additionalProperties": false,
+      "properties": {
+        "organization_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Organization Ids",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "team_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Team Ids",
+          "type": "array",
+          "uniqueItems": true
+        },
+        "store_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Store Ids",
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "title": "DataScope",
+      "type": "object"
+    },
+    "DataStatus": {
+      "enum": [
+        "demo"
+      ],
+      "title": "DataStatus",
+      "type": "string"
+    },
+    "ModuleCode": {
+      "enum": [
+        "operations",
+        "procurement",
+        "creative",
+        "admin"
+      ],
+      "title": "ModuleCode",
+      "type": "string"
+    },
+    "OperationsCounts": {
+      "properties": {
+        "pending_tasks": {
+          "minimum": 0,
+          "title": "Pending Tasks",
+          "type": "integer"
+        },
+        "active_projects": {
+          "minimum": 0,
+          "title": "Active Projects",
+          "type": "integer"
+        },
+        "exceptions": {
+          "minimum": 0,
+          "title": "Exceptions",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pending_tasks",
+        "active_projects",
+        "exceptions"
+      ],
+      "title": "OperationsCounts",
+      "type": "object"
+    },
+    "OperationsDashboardResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "viewer": {
+          "$ref": "#/$defs/ViewerResponse"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        },
+        "data_status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "type": "string"
+        },
+        "workspace": {
+          "const": "operations",
+          "title": "Workspace",
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/$defs/OperationsCounts"
+        },
+        "work_items": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceRecordResponse"
+          },
+          "title": "Work Items",
+          "type": "array"
+        },
+        "projects": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceRecordResponse"
+          },
+          "title": "Projects",
+          "type": "array"
+        },
+        "alerts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alerts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "viewer",
+        "generated_at",
+        "data_status",
+        "disclaimer",
+        "workspace",
+        "counts",
+        "work_items",
+        "projects",
+        "alerts"
+      ],
+      "title": "OperationsDashboardResponse",
+      "type": "object"
+    },
+    "Permission": {
+      "enum": [
+        "operations.dashboard.read",
+        "selection.read",
+        "selection.create",
+        "selection.export",
+        "profit_review.read",
+        "final_selection.read",
+        "final_selection.manage",
+        "competitor_reference.manage",
+        "project.read_assigned",
+        "listing_copy.read",
+        "listing_copy.generate",
+        "listing_copy.edit",
+        "listing_copy.review",
+        "listing_copy.history.read",
+        "workflow.read_assigned",
+        "ai_feedback.create_own",
+        "procurement.dashboard.read",
+        "quote.read",
+        "quote.manage",
+        "quotation.export",
+        "purchase_request.read",
+        "purchase_request.manage",
+        "fulfillment.read",
+        "creative.dashboard.read",
+        "content_task.read_assigned",
+        "asset.read",
+        "asset.create",
+        "asset.version.create",
+        "generation.request",
+        "review_comment.read",
+        "admin.dashboard.read",
+        "user.manage",
+        "role.manage",
+        "all_business.read",
+        "task.read_all",
+        "error.read",
+        "ai_feedback.read_all",
+        "audit_log.read",
+        "capability.read",
+        "system_health.read",
+        "store.read",
+        "store.manage"
+      ],
+      "title": "Permission",
+      "type": "string"
+    },
+    "ProcurementCounts": {
+      "properties": {
+        "pending_requests": {
+          "minimum": 0,
+          "title": "Pending Requests",
+          "type": "integer"
+        },
+        "open_quotes": {
+          "minimum": 0,
+          "title": "Open Quotes",
+          "type": "integer"
+        },
+        "fulfillment_exceptions": {
+          "minimum": 0,
+          "title": "Fulfillment Exceptions",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "pending_requests",
+        "open_quotes",
+        "fulfillment_exceptions"
+      ],
+      "title": "ProcurementCounts",
+      "type": "object"
+    },
+    "ProcurementDashboardResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "viewer": {
+          "$ref": "#/$defs/ViewerResponse"
+        },
+        "generated_at": {
+          "format": "date-time",
+          "title": "Generated At",
+          "type": "string"
+        },
+        "data_status": {
+          "$ref": "#/$defs/DataStatus"
+        },
+        "disclaimer": {
+          "title": "Disclaimer",
+          "type": "string"
+        },
+        "workspace": {
+          "const": "procurement",
+          "title": "Workspace",
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/$defs/ProcurementCounts"
+        },
+        "purchase_requests": {
+          "items": {
+            "$ref": "#/$defs/WorkspaceRecordResponse"
+          },
+          "title": "Purchase Requests",
+          "type": "array"
+        },
+        "alerts": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Alerts",
+          "type": "array"
+        }
+      },
+      "required": [
+        "viewer",
+        "generated_at",
+        "data_status",
+        "disclaimer",
+        "workspace",
+        "counts",
+        "purchase_requests",
+        "alerts"
+      ],
+      "title": "ProcurementDashboardResponse",
+      "type": "object"
+    },
+    "RoleName": {
+      "enum": [
+        "operations",
+        "procurement",
+        "creative",
+        "admin"
+      ],
+      "title": "RoleName",
+      "type": "string"
+    },
+    "ViewerResponse": {
+      "properties": {
+        "user_id": {
+          "format": "uuid",
+          "title": "User Id",
+          "type": "string"
+        },
+        "username": {
+          "title": "Username",
+          "type": "string"
+        },
+        "display_name": {
+          "title": "Display Name",
+          "type": "string"
+        },
+        "roles": {
+          "items": {
+            "$ref": "#/$defs/RoleName"
+          },
+          "title": "Roles",
+          "type": "array"
+        },
+        "modules": {
+          "items": {
+            "$ref": "#/$defs/ModuleCode"
+          },
+          "title": "Modules",
+          "type": "array"
+        },
+        "permissions": {
+          "items": {
+            "$ref": "#/$defs/Permission"
+          },
+          "title": "Permissions",
+          "type": "array"
+        },
+        "scope": {
+          "$ref": "#/$defs/DataScope"
+        },
+        "authorization_revision": {
+          "title": "Authorization Revision",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "user_id",
+        "username",
+        "display_name",
+        "roles",
+        "modules",
+        "permissions",
+        "scope",
+        "authorization_revision"
+      ],
+      "title": "ViewerResponse",
+      "type": "object"
+    },
+    "WorkspaceRecordResponse": {
+      "additionalProperties": false,
+      "properties": {
+        "record_id": {
+          "format": "uuid",
+          "title": "Record Id",
+          "type": "string"
+        },
+        "store_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Store Id"
+        },
+        "record_type": {
+          "title": "Record Type",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "updated_at": {
+          "format": "date-time",
+          "title": "Updated At",
+          "type": "string"
+        },
+        "summary": {
+          "additionalProperties": true,
+          "title": "Summary",
+          "type": "object"
+        }
+      },
+      "required": [
+        "record_id",
+        "store_id",
+        "record_type",
+        "title",
+        "status",
+        "updated_at",
+        "summary"
+      ],
+      "title": "WorkspaceRecordResponse",
+      "type": "object"
+    }
+  },
+  "discriminator": {
+    "mapping": {
+      "admin": "#/$defs/AdminDashboardResponse",
+      "creative": "#/$defs/CreativeDashboardResponse",
+      "operations": "#/$defs/OperationsDashboardResponse",
+      "procurement": "#/$defs/ProcurementDashboardResponse"
+    },
+    "propertyName": "workspace"
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/OperationsDashboardResponse"
+    },
+    {
+      "$ref": "#/$defs/ProcurementDashboardResponse"
+    },
+    {
+      "$ref": "#/$defs/CreativeDashboardResponse"
+    },
+    {
+      "$ref": "#/$defs/AdminDashboardResponse"
+    }
+  ]
+}
